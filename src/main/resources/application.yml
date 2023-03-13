@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: mem
+  datasource:
+    url: jdbc:oracle:thin:@192.168.208.154:1521:orcl
+    driver-class-name: oracle.jdbc.OracleDriver
+    username: leedoryu #ENCA7DymobFJzjvbZG5NHgfQ5cA+s3uV3VZvZ
+    password: 1234 #ENCAhaaeurlBpwKtshO47jlRnQ==Z
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 9000
+
+jasypt:
+  encryptor:
+    password: test
+    bean: jasyptStringEncryptor
+    property:
+      prefix: "ENCA"
+      suffix: "Z"

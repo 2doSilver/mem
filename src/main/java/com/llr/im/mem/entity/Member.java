@@ -42,13 +42,10 @@ public class Member {
     @Column(length = 100, nullable = false)
     private String userEmail;
 
-    @Column(nullable = false)
     private String fileName;
 
-    @Column(nullable = false)
     private String fileOriName;
 
-    @Column(nullable = false)
     private Long fileSize;
 
     @CreatedDate

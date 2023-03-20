@@ -13,12 +13,12 @@ public class Comment {
 
 
     @Column(length = 100)
-    private Integer room_id;
+    private Integer roomId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 100)
-    private Integer comment_id;
+    private Integer commentId;
 
     @Column(length = 40)
     private String writer;
@@ -26,9 +26,9 @@ public class Comment {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    private LocalDateTime reg_date;
+    private LocalDateTime regDate;
 
-    private LocalDateTime upd_date;
+    private LocalDateTime updDate;
 
     @ManyToOne
     private Room room;

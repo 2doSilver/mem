@@ -15,26 +15,26 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 100)
-    private Integer room_id;
+    private Integer roomId;
 
     @Column(length = 50)
-    private String owner_id;
+    private String ownerId;
 
     @Column(length = 20)
-    private String room_code;
+    private String roomCode;
 
     @Column(length = 20)
-    private String room_name;
+    private String roomName;
 
     @Column(length = 50)
-    private String user_id;
+    private String userId;
 
     @Column(length = 100)
-    private String room_tag;
+    private String roomTag;
 
-    private LocalDateTime reg_date;
+    private LocalDateTime regDate;
 
-    private LocalDateTime upd_date;
+    private LocalDateTime updDate;
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
     private List<Comment> commentList;

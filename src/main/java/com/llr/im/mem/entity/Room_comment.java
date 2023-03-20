@@ -33,4 +33,5 @@ public class Comment {
     @ManyToOne
     private Room room;
 
+
 }

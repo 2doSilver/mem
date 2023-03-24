@@ -14,7 +14,6 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(length = 100)
     private Integer roomId;
 
     @Column(length = 50)
@@ -37,5 +36,5 @@ public class Room {
     private LocalDateTime updDate;
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
-    private List<Comment> commentList;
+    private List<Room_comment> room_commentList;
 }

@@ -1,20 +1,23 @@
 package com.llr.im.mem.entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.OneToMany;
 import java.util.List;
+
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
-@Setter
+//@Setter
 @Entity
 public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer roomId;
+    private Long roomId;
 
     @Column(length = 50)
     private String ownerId;
@@ -37,4 +40,19 @@ public class Room {
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
     private List<Room_comment> room_commentList;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
+    private List<RoomJoin> roomJoinList;
+
+    @Builder
+    public Room(String ownerId, String roomCode, String roomName, String userId, String roomTag,
+                LocalDateTime regDate, LocalDateTime updDate) {
+        this.ownerId = ownerId;
+        this.roomCode = roomCode;
+        this.roomName = roomName;
+        this.userId = userId;
+        this.roomTag = roomTag;
+        this.regDate = regDate;
+        this.updDate = updDate;
+    }
 }

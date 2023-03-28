@@ -20,7 +20,7 @@ public class RoomService {
         return this.roomRepository.findAll();
     }
 
-    public Room getRoom(Integer roomId) {
+    public Room getRoom(Long roomId) {
         Optional<Room> room = this.roomRepository.findById(roomId);
         if (room.isPresent()) {
             return room.get();

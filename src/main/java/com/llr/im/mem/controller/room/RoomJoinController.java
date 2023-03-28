@@ -21,12 +21,14 @@ public class RoomJoinController {
     private final RoomJoinService roomJoinService;
 
     @PostMapping("/{roomId}")
-    public String joinRoom(Model model, @PathVariable("roomId") Integer roomId,@RequestParam String activeName, @RequestParam String roomCode) {
-
+    public String joinRoom(Model model, @PathVariable("roomId") Long roomId,
+                           @RequestParam String roomCode,
+                           @RequestParam String activeName
+                           ) {
 
         Room room = this.roomService.getRoom(roomId);
-        this.roomJoinService.join(activeName, roomCode);
 
+        this.roomJoinService.join(roomCode, activeName);
         return String.format("redirect:/room/detail/%s", roomId);
     }
 }

@@ -17,7 +17,7 @@ public class Room_comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer commentId;
+    private Long commentId;
 
     @Column(length = 40)
     private String writer;

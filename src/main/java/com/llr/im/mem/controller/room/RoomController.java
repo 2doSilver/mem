@@ -34,7 +34,7 @@ public class RoomController {
     }
 
     @GetMapping(value = "/detail/{roomId}")
-    public String detail(Model model, @PathVariable("roomId") Integer roomId) {
+    public String detail(Model model, @PathVariable("roomId") Long roomId) {
 
         Room room = this.roomService.getRoom(roomId);
         model.addAttribute("room", room);

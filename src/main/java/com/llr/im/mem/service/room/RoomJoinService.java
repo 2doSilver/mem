@@ -13,11 +13,11 @@ public class RoomJoinService {
 
     private final RoomJoinRepository roomJoinRepository;
 
-    public void join(String activeName, String roomCode) {
+    public void join(String roomCode, String activeName ) {
 
         RoomJoin roomjoin = new RoomJoin();
-        roomjoin.setActiveName(activeName);
         roomjoin.setRoomCode(roomCode);
+        roomjoin.setActiveName(activeName);
 
         this.roomJoinRepository.save(roomjoin);
     }

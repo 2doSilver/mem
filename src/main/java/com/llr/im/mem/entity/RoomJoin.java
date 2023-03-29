@@ -10,9 +10,9 @@ import lombok.Setter;
 @Entity
 public class RoomJoin {
 
-//    @jakarta.persistence.Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Integer Id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
 
     @Column(length = 40)
     private String activeName;
@@ -20,8 +20,8 @@ public class RoomJoin {
     @Column(length = 20)
     private String roomCode;
 
-    @Id
-    private Integer roomId;
+    @Column(length = 40)
+    private Long roomId;
 
     @ManyToOne
     private Room room;

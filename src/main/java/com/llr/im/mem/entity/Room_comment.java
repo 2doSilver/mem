@@ -22,7 +22,7 @@ public class Room_comment {
     @Column(length = 40)
     private String writer;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(length = 400)
     private String content;
 
     private LocalDateTime regDate;

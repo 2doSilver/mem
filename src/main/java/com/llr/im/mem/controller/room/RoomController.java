@@ -1,7 +1,7 @@
 package com.llr.im.mem.controller.room;
 
+import com.llr.im.mem.controller.dto.room.RoomDto;
 import com.llr.im.mem.entity.Room;
-import com.llr.im.mem.entity.RoomRepository;
 import com.llr.im.mem.service.room.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class RoomController {
     //Model 객체는 자바 클래스와 템플릿 간의 연결고리 역할
     @GetMapping("/list")
     public String list(Model model) {
-        List<Room> roomList = this.roomService.getList();
+        List<RoomDto> roomList = this.roomService.getList();
         model.addAttribute("roomList", roomList);
         return "room_list";
     }

@@ -1,5 +1,7 @@
-package com.llr.im.mem.entity;
+package com.llr.im.mem.entity.room;
 
+import com.llr.im.mem.entity.roomjoin.RoomJoin;
+import com.llr.im.mem.entity.comment.Room_comment;
 import jakarta.persistence.*;
 import jakarta.persistence.OneToMany;
 import java.util.List;
@@ -9,7 +11,6 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Getter
-//@Setter
 @Entity
 @NoArgsConstructor
 public class Room {
@@ -42,6 +43,9 @@ public class Room {
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
     private List<RoomJoin> roomJoinList;
+
+//    @OneToMany(mappedBy = "")
+//    private RoomJoin roomJoin;
 
     @Builder
     public Room(String ownerId, String roomCode, String roomName, String userId, String roomTag,

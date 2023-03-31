@@ -1,9 +1,8 @@
 package com.llr.im.mem.controller.room;
 
-import com.llr.im.mem.entity.Room;
+import com.llr.im.mem.entity.room.Room;
 import com.llr.im.mem.service.room.RoomJoinService;
 import com.llr.im.mem.service.room.RoomService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

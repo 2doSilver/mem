@@ -1,5 +1,6 @@
-package com.llr.im.mem.entity;
+package com.llr.im.mem.entity.comment;
 
+import com.llr.im.mem.entity.room.Room;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

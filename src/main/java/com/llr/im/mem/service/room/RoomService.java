@@ -1,8 +1,8 @@
 package com.llr.im.mem.service.room;
 
 import com.llr.im.mem.controller.dto.room.RoomDto;
-import com.llr.im.mem.entity.Room;
-import com.llr.im.mem.entity.RoomRepository;
+import com.llr.im.mem.entity.room.Room;
+import com.llr.im.mem.entity.room.RoomRepository;
 import com.llr.im.mem.exception.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

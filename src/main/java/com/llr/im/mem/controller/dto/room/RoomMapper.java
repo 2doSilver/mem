@@ -1,8 +1,7 @@
 package com.llr.im.mem.controller.dto.room;
 
-import com.llr.im.mem.entity.Room;
+import com.llr.im.mem.entity.room.Room;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 

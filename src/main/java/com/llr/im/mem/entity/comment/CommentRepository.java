@@ -1,4 +1,4 @@
-package com.llr.im.mem.entity;
+package com.llr.im.mem.entity.comment;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package com.llr.im.mem.entity;
+package com.llr.im.mem.entity.member;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

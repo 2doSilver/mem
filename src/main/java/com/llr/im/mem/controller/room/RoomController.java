@@ -1,7 +1,7 @@
 package com.llr.im.mem.controller.room;
 
 import com.llr.im.mem.controller.dto.room.RoomDto;
-import com.llr.im.mem.entity.Room;
+import com.llr.im.mem.entity.room.Room;
 import com.llr.im.mem.service.room.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

@@ -4,11 +4,14 @@ import com.llr.im.mem.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @AllArgsConstructor
 @Getter
+@Setter
 public class FriendListDto {
 
+    private Long id;
 
     private String userId;
     private String userName;
@@ -18,6 +21,7 @@ public class FriendListDto {
     private String fileName;
 
     public FriendListDto (Member entity) {
+        this.id = entity.getId();
         this.userId = entity.getUserId();
         this.userName = entity.getUserName();
         this.userBirthdate = entity.getUserBirthdate();

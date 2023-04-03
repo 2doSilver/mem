@@ -19,6 +19,8 @@ public class SecurityConfig {
                 new AntPathRequestMatcher("/**")
         ).permitAll();
 
+        http.csrf().disable();
+
         return http.build();
     }
 

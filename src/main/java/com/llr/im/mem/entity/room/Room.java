@@ -44,9 +44,6 @@ public class Room {
     @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
     private List<RoomJoin> roomJoinList;
 
-//    @OneToMany(mappedBy = "")
-//    private RoomJoin roomJoin;
-
     @Builder
     public Room(String ownerId, String roomCode, String roomName, String userId, String roomTag,
                 LocalDateTime regDate, LocalDateTime updDate) {

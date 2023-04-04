@@ -6,6 +6,7 @@
     <tr>
         <th>방이름</th>
         <th>방장</th>
+<!--        <th>현재인원</th>-->
         <th>방생성일자</th>
     </tr>
     </thead>
@@ -14,8 +15,8 @@
         <td>
             <a th:href="@{|/room/detail/${room.roomId}|}" th:text="${room.roomName}"></a>
         </td>
-<!--        <td th:text="${room.roomName}"></td>-->
         <td th:text="${room.ownerId}"></td>
+<!--        <td th:text="${#lists.size(room.roomJoinList)}"></td>-->
         <td th:text="${room.regDate}"></td>
     </tr>
     </tbody>

@@ -1,35 +1,57 @@
 package com.llr.im.mem.controller.room;
 
 import com.llr.im.mem.entity.room.Room;
+import com.llr.im.mem.entity.roomjoin.RoomJoin;
 import com.llr.im.mem.service.room.RoomJoinService;
 import com.llr.im.mem.service.room.RoomService;
+import jakarta.validation.Valid;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 
-@RequestMapping("/join")
+@RequiredArgsConstructor
 @Controller
+@RequestMapping("/room")
+@Slf4j
 public class RoomJoinController {
 
-    @Autowired
-    private RoomService roomService;
-    @Autowired
-    private RoomJoinService roomJoinService;
+    private final RoomJoinService roomJoinService;
 
-    @PostMapping("/{roomId}")
-    public String joinRoom(Model model, @PathVariable("roomId") Long roomId,
-                           @RequestParam String roomCode,
-                           @RequestParam String activeName
-                           ) {
+    @GetMapping(value = "/{roomId}/join")
+    public String joinRoom(Model model, @PathVariable("roomId") Long roomId) {
 
-        Room room = this.roomService.getRoom(roomId);
+        model.addAttribute("roomId", roomId);
+        model.addAttribute("roomJoinForm", new RoomJoinForm());
+        return "room_join";
 
-        this.roomJoinService.join(roomCode, activeName);
-        return String.format("redirect:/room/detail/%s", roomId);
     }
+
+
+    @PostMapping(value = "/{roomId}/join")
+    public String joinRoom(@PathVariable("roomId") Long roomId, @Valid RoomJoinForm roomJoinForm, BindingResult bindingResult) {
+        log.info("===== {}", roomId);
+        try {
+            roomJoinService.join(roomJoinForm.getRoomCode(),roomJoinForm.getActiveName(), roomId);
+        }catch (DataIntegrityViolationException e) {
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", "이미 등록된 활동명입니다.");
+            return "room_join";
+        }catch (Exception e) {
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", e.getMessage());
+            return "room_join";
+        }
+
+        return String.format("redirect:/room/detail/%s", roomId);
+        //return "redirect:/room/detail/{room.roomId}";
+    }
+
+
 }

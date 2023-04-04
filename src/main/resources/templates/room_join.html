@@ -1,0 +1,14 @@
+<h1>ROOM 가입화면</h1>
+
+
+<form th:action="@{|/room/${roomId}/join|}" th:object="${roomJoinForm}" method="post">
+    <div class="mb-3">
+        <label for="roomCode" class="form-label">방 입장코드</label>
+        <input type="text" th:field="*{roomCode}" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="activeName" class="form-label">활동명</label>
+        <input type="text" th:field="*{activeName}" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">등록</button>
+</form>

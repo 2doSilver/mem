@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
+@Setter
 @Entity
 @NoArgsConstructor
 public class RoomJoin {
@@ -22,18 +23,18 @@ public class RoomJoin {
 
     @Column(length = 40, unique = true)
     private String activeName;
-
-    @Column(length = 40)
-    private Long roomId;
+//
+//    @Column(length = 40)
+//    private Long roomId;
 
     @ManyToOne
     @JoinColumn(name = "roomId")
     private Room room;
 
     @Builder
-    public RoomJoin(String activeName, String roomCode, Long roomId) {
+    public RoomJoin(String activeName, String roomCode) {
         this.activeName = activeName;
         this.roomCode = roomCode;
-        this.roomId = roomId;
+
     }
 }

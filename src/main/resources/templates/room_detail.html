@@ -2,16 +2,14 @@
 <h2 th:text="${room.roomName}"></h2>
 <div th:text="|방장 : ${room.ownerId}|"></div>
 <h5 th:text="|현재 ${#lists.size(room.roomJoinList)}명의 참여자가 있습니다.|"></h5>
-<!--<h3 th:text="${roomJoin?.roomCode}"></h3>-->
-<!--<h3 th:text="${room.roomJoin?.activeName}"></h3>-->
+
 <div>
     <ul>
         <li th:each="roomJoin : ${room.roomJoinList}"
             th:text="${roomJoin?.activeName}"></li>
     </ul>
 </div>
-<form th:action="@{|/join/${room.roomId}|}" method="post">
-    <textarea name="roomCode" id="roomCode" rows="1">방 입장코드</textarea>
-    <textarea name="activeName" id="activeName" rows="1">활동명</textarea>
-    <input type="submit" value="가입등록">
-</form>
+
+<button th:onclick="|location.href='@{|/room/${room.roomId}/join|}'|">참여하기</button>
+
+

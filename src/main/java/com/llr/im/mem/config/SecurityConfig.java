@@ -15,6 +15,8 @@ public class SecurityConfig {
         //인증되지 않은 요청을 허락
         http.authorizeHttpRequests().requestMatchers(
                 new AntPathRequestMatcher("/**")).permitAll();
+        http.csrf().disable();
+
         return http.build();
     }
 }

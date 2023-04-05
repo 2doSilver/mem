@@ -1,5 +1,7 @@
 <h1>ROOM 가입화면</h1>
 
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
+<div class="container my-3">
 
 <form th:action="@{|/room/${roomId}/join|}" th:object="${roomJoinForm}" method="post">
     <div class="mb-3">
@@ -12,3 +14,4 @@
     </div>
     <button type="submit" class="btn btn-primary">등록</button>
 </form>
+</div>

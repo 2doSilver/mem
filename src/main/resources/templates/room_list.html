@@ -1,23 +1,23 @@
 <h1>ROOM LIST 화면</h1>
 <h2> !!!Hello LLR Project!!!</h2>
+<head>
+    <link rel="stylesheet" type="text/css" href="/card_style.css">
+</head>
 
-<table>
-    <thead>
-    <tr>
-        <th>방이름</th>
-        <th>방장</th>
-<!--        <th>현재인원</th>-->
-        <th>방생성일자</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="room : ${roomList}">
-        <td>
-            <a th:href="@{|/room/detail/${room.roomId}|}" th:text="${room.roomName}"></a>
-        </td>
-        <td th:text="${room.ownerId}"></td>
-<!--        <td th:text="${#lists.size(room.roomJoinList)}"></td>-->
-        <td th:text="${room.regDate}"></td>
-    </tr>
-    </tbody>
-</table>
+<body>
+<div class="card-container">
+    <div th:each="room : ${roomList}">
+        <div class="card">
+            <img class="card-cover-img" src="/images/cat.jpg"/>
+            <h3>
+                <a th:href="@{|/room/detail/${room.roomId}|}" th:text="${room.roomName}"></a>
+            </h3>
+            <p th:text="|✔${room.ownerId} 방장님✔|"></p>
+            <div>
+                <img class="card-owner-img" src="/images/juuu.jpg"/>
+            </div>
+            <p th:text="|✔모임 생성일 ${#temporals.format(room.regDate, 'yyyy-MM-dd')}✔|"></p>
+        </div>
+    </div>
+</div>
+</body>

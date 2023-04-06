@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <form th:action="@{/message/send}" th:object="${messageSaveDto}" method="post">
+      <h3 th:text="${messageMainDto.receiverName}"/>
+      <input type="hidden" th:value="${messageMainDto.receiverUserId}" name="receiverUserId">
+      <input type="hidden" th:value="${messageMainDto.receiverId}" name="receiverId">
+      <input type="text" name="content" style="width: 370px; height: 380px;" required="true">
+      <button type="submit">전송</button>
+      <button onclick="quit()">취소</button>
+  </form>
+</body>
+<script th:src="@{/script.js}"></script>
+</html>

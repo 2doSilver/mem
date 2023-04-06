@@ -67,4 +67,8 @@ public class Member {
         this.fileOriName = fileOriName;
         this.fileSize = fileSize;
     }
+
+    public Member(Long id) {
+        this.id = id;
+    }
 }

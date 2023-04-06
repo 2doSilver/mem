@@ -53,8 +53,9 @@ public class Member {
     private Date regDate;
 
     @Builder
-    public Member(String userId, String userPassword, String userName, String userPhone,
+    public Member(Long id, String userId, String userPassword, String userName, String userPhone,
                   String userBirthdate, String userSex, String userEmail, String fileName, String fileOriName, Long fileSize) {
+        this.id = id;
         this.userId = userId;
         this.userPassword = userPassword;
         this.userName = userName;
@@ -65,5 +66,9 @@ public class Member {
         this.fileName = fileName;
         this.fileOriName = fileOriName;
         this.fileSize = fileSize;
+    }
+
+    public Member(Long id) {
+        this.id = id;
     }
 }

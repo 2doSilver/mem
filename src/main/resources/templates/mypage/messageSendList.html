@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" layout:decorate="~{layout/layout}">
+<div style="height: auto; border: 1px dashed; margin: 10px; padding: 10px;" layout:fragment="content">
+    <table>
+        <tr>
+            <td>받는사람</td>
+            <td>내용</td>
+            <td>발신일</td>
+            <td>수신일</td>
+            <td></td>
+        </tr>
+        <tr th:each="message : ${messageList}">
+            <td th:text="${message.receiver.userName}">수신자 이름</td>
+            <td th:text="${message.content}" style="text-overflow:ellipsis; overflow:hidden;">쪽지 내용</td>
+            <td th:text="${message.sendDate}">송신일</td>
+            <td th:text="${message.receiveDate}">수신일</td>
+            <td th:if="${message.receiveChk == false}">
+                <form th:action="@{'/message/cancel/{id}' (id=${message.id})}" th:method="delete">
+                    <button type="submit">전송 취소</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</html>

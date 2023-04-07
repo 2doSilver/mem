@@ -2,7 +2,7 @@ package com.llr.im.mem.service.friend;
 
 import com.llr.im.mem.controller.dto.friend.FriendListDto;
 import com.llr.im.mem.entity.friend.FriendRepository;
-import com.llr.im.mem.entity.MemberRepository;
+import com.llr.im.mem.entity.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

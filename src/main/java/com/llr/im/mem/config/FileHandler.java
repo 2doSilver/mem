@@ -1,6 +1,6 @@
 package com.llr.im.mem.config;
 
-import com.llr.im.mem.entity.Member;
+import com.llr.im.mem.entity.member.Member;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;

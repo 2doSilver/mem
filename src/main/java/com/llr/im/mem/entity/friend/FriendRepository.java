@@ -1,6 +1,6 @@
 package com.llr.im.mem.entity.friend;
 
-import com.llr.im.mem.entity.Member;
+import com.llr.im.mem.entity.member.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

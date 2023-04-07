@@ -1,4 +1,4 @@
-package com.llr.im.mem.service.room;
+package com.llr.im.mem.service.member.room;
 
 import com.llr.im.mem.controller.dto.room.RoomDto;
 import com.llr.im.mem.entity.room.Room;

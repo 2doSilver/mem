@@ -1,14 +1,9 @@
 package com.llr.im.mem.controller.room;
 
-import com.llr.im.mem.entity.room.Room;
-import com.llr.im.mem.entity.roomjoin.RoomJoin;
-import com.llr.im.mem.service.room.RoomJoinService;
-import com.llr.im.mem.service.room.RoomService;
+import com.llr.im.mem.service.member.room.RoomJoinService;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

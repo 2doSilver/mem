@@ -1,6 +1,6 @@
 package com.llr.im.mem.d_test;
 
-import com.llr.im.mem.entity.Member;
+import com.llr.im.mem.entity.member.Member;
 import com.llr.im.mem.d_test.TestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

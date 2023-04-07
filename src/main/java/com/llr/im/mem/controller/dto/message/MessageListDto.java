@@ -1,6 +1,6 @@
 package com.llr.im.mem.controller.dto.message;
 
-import com.llr.im.mem.entity.Member;
+import com.llr.im.mem.entity.member.Member;
 import com.llr.im.mem.entity.message.Message;
 import lombok.*;
 

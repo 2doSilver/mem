@@ -1,16 +1,12 @@
 package com.llr.im.mem.controller.friend;
 
 import com.llr.im.mem.controller.dto.friend.FriendListDto;
-import com.llr.im.mem.entity.Member;
 import com.llr.im.mem.service.friend.FriendService;
-import groovy.transform.AutoClone;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package com.llr.im.mem.d_test;
 
 import com.llr.im.mem.config.FileHandler;
-import com.llr.im.mem.entity.Member;
-import com.llr.im.mem.entity.MemberRepository;
+import com.llr.im.mem.entity.member.Member;
+import com.llr.im.mem.entity.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

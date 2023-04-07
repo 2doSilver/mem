@@ -1,6 +1,6 @@
 package com.llr.im.mem.controller.dto.friend;
 
-import com.llr.im.mem.entity.Member;
+import com.llr.im.mem.entity.member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

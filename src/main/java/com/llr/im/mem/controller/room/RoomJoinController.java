@@ -1,5 +1,6 @@
 package com.llr.im.mem.controller.room;
 
+import com.llr.im.mem.exception.DuplicateException;
 import com.llr.im.mem.service.member.room.RoomJoinService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,13 @@ public class RoomJoinController {
     public String joinRoom(@PathVariable("roomId") Long roomId, @Valid RoomJoinForm roomJoinForm, BindingResult bindingResult) {
         log.info("===== {}", roomId);
         try {
-            roomJoinService.join(roomJoinForm.getRoomCode(),roomJoinForm.getActiveName(), roomId);
+            roomJoinForm.setMemberId(99999999L);
+            roomJoinForm.setRoomId(roomId);
+            roomJoinService.join(roomJoinForm);
+        }catch (DuplicateException e) {
+            e.printStackTrace();
+            bindingResult.reject("signupFailed", "이미 가입된 방입니다.");
+            return "room_join";
         }catch (DataIntegrityViolationException e) {
             e.printStackTrace();
             bindingResult.reject("signupFailed", "이미 등록된 활동명입니다.");

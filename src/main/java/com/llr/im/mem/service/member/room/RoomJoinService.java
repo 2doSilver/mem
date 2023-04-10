@@ -47,6 +47,6 @@ public class RoomJoinService {
     public List<UserJoinRoomListDto> getUserRoomList(Long userId) {
 
         return roomJoinRepository.findByMemberId(userId).stream()
-                .map(rj -> new UserJoinRoomListDto(rj.getActiveName(), rj.getRoom().getRoomName())).collect(Collectors.toList());
+                .map(rj -> new UserJoinRoomListDto(rj.getActiveName(), rj.getRoom())).collect(Collectors.toList());
     }
 }

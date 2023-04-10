@@ -12,5 +12,5 @@ public class UserJoinRoomListDto {
 
     private String activeName;
 
-    private String roomName;
+    private Room room;
 }

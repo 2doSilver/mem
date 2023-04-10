@@ -1,40 +1,31 @@
 package com.llr.im.mem.entity.roomjoin;
 
+import com.llr.im.mem.entity.member.Member;
 import com.llr.im.mem.entity.room.Room;
 import jakarta.persistence.*;
 import jakarta.persistence.ManyToOne;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
 @Entity
 @NoArgsConstructor
+@Getter
+@Builder
+@AllArgsConstructor
 public class RoomJoin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @Column(length = 20)
     private String roomCode;
 
-    @Column(length = 40, unique = true)
+    @Column(length = 40)
     private String activeName;
-//
-//    @Column(length = 40)
-//    private Long roomId;
 
-    @ManyToOne
-    @JoinColumn(name = "roomId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Room room;
-
-    @Builder
-    public RoomJoin(String activeName, String roomCode) {
-        this.activeName = activeName;
-        this.roomCode = roomCode;
-
-    }
 }

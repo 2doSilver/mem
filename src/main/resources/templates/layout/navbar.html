@@ -1,73 +1,3 @@
-
-<!--<nav th:fragment="navbarFragment" class="navbar navbar-custom navbar-fixed-top" role="navigation">-->
-<!--    <div class="container" style="display: inline-block;">-->
-<!--        <div class="navbar-header">-->
-<!--            <a class="navbar-brand" href="index.html">Titan</a>-->
-<!--        </div>-->
-<!--        <div style="float: right;" class="navbar-collapse" id="custom-collapse">-->
-<!--            <ul class="nav navbar-nav navbar-right" style="display: inline-block;">-->
-<!--                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Home</a>-->
-<!--                    <ul class="dropdown-menu">-->
-<!--                        <li><a href="index_mp_fullscreen_video_background.html">Default</a></li>-->
-<!--                        <li><a href="index_op_fullscreen_gradient_overlay.html">One Page</a></li>-->
-<!--                        <li><a href="index_agency.html">Agency</a></li>-->
-<!--                        <li><a href="index_portfolio.html">Portfolio</a></li>-->
-<!--                        <li><a href="index_restaurant.html">Restaurant</a></li>-->
-<!--                        <li><a href="index_finance.html">Finance</a></li>-->
-<!--                        <li><a href="index_landing.html">Landing Page</a></li>-->
-<!--                        <li><a href="index_photography.html">Photography</a></li>-->
-<!--                        <li><a href="index_shop.html">Shop</a></li>-->
-<!--                    </ul>-->
-<!--                </li>-->
-<!--                <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Headers</a>-->
-<!--                    <ul class="dropdown-menu">-->
-<!--                        <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Static Image Header</a>-->
-<!--                            <ul class="dropdown-menu">-->
-<!--                                <li><a href="index_mp_fullscreen_static.html">Fulscreen</a></li>-->
-<!--                                <li><a href="index_mp_classic_static.html">Classic</a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-<!--                        <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Flexslider Header</a>-->
-<!--                            <ul class="dropdown-menu">-->
-<!--                                <li><a href="index_mp_fullscreen_flexslider.html">Fulscreen</a></li>-->
-<!--                                <li><a href="index_mp_classic_flexslider.html">Classic</a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-<!--                        <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Video Background Header</a>-->
-<!--                            <ul class="dropdown-menu">-->
-<!--                                <li><a href="index_mp_fullscreen_video_background.html">Fulscreen</a></li>-->
-<!--                                <li><a href="index_mp_classic_video_background.html">Classic</a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-<!--                        <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Text Rotator Header</a>-->
-<!--                            <ul class="dropdown-menu">-->
-<!--                                <li><a href="index_mp_fullscreen_text_rotator.html">Fulscreen</a></li>-->
-<!--                                <li><a href="index_mp_classic_text_rotator.html">Classic</a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-<!--                        <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Gradient Overlay Header</a>-->
-<!--                            <ul class="dropdown-menu">-->
-<!--                                <li><a href="index_mp_fullscreen_gradient_overlay.html">Fulscreen</a></li>-->
-<!--                                <li><a href="index_mp_classic_gradient_overlay.html">Classic</a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </li>-->
-<!--                <li class="dropdown"><a class="dropdown-toggle" href="documentation.html" data-toggle="dropdown">myPage</a>-->
-<!--                    <ul class="dropdown-menu">-->
-<!--                        <li><a href="documentation.html#contact">myInfo</a></li>-->
-<!--                        <li><a th:href="@{/friend/list}">FriendList</a></li>-->
-<!--                        <li><a href="documentation.html#mailchimp">Mailchimp</a></li>-->
-<!--                        <li><a href="documentation.html#gmap">Google Map</a></li>-->
-<!--                        <li><a href="documentation.html#plugin">Plugins</a></li>-->
-<!--                        <li><a href="documentation.html#changelog">Changelog</a></li>-->
-<!--                    </ul>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
-
 <nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light bg-light" style="align: center;">
     <div class="container-fluid" style="align: right; width: 90%">
         <a class="navbar-brand" href="#">Navbar</a>
@@ -91,7 +21,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <li><a class="dropdown-item" href="#">마이페이지</a></li>
-                        <li><a class="dropdown-item" href="#">친구목록</a></li>
+                        <li><a class="dropdown-item" href="/friend/list">친구목록</a></li>
                         <li><a class="dropdown-item" href="#">쪽지</a></li>
                     </ul>
                 </li>

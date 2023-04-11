@@ -31,7 +31,6 @@ public class RoomJoinController {
 
     @PostMapping(value = "/{roomId}/join")
     public String joinRoom(@PathVariable("roomId") Long roomId, @Valid RoomJoinForm roomJoinForm, BindingResult bindingResult) {
-        log.info("===== {}", roomId);
         try {
             roomJoinService.join(roomJoinForm.getRoomCode(),roomJoinForm.getActiveName(), roomId);
         }catch (DataIntegrityViolationException e) {
@@ -45,7 +44,6 @@ public class RoomJoinController {
         }
 
         return String.format("redirect:/room/detail/%s", roomId);
-        //return "redirect:/room/detail/{room.roomId}";
     }
 
 

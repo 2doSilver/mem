@@ -25,11 +25,14 @@ public class Room {
     @Column(length = 20)
     private String roomCode;
 
-    @Column(length = 20)
+    @Column(length = 20, unique = true)
     private String roomName;
 
-    @Column(length = 50)
-    private String userId;
+    @Column
+    private Integer userSize;
+
+    @Column(length = 30, unique = true)
+    private String activeName;
 
     @Column(length = 100)
     private String roomTag;
@@ -44,15 +47,21 @@ public class Room {
     @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
     private List<RoomJoin> roomJoinList;
 
+    @Lob
+    @Column
+    private byte[] coverPhoto;
+
     @Builder
-    public Room(String ownerId, String roomCode, String roomName, String userId, String roomTag,
-                LocalDateTime regDate, LocalDateTime updDate) {
+    public Room(String ownerId, String roomCode, String roomName, Integer userSize, String roomTag,
+                LocalDateTime regDate, LocalDateTime updDate, byte[] coverPhoto) {
         this.ownerId = ownerId;
         this.roomCode = roomCode;
         this.roomName = roomName;
-        this.userId = userId;
+        this.userSize = userSize;
+       // this.activeName = activeName;
         this.roomTag = roomTag;
         this.regDate = regDate;
         this.updDate = updDate;
+        this.coverPhoto = coverPhoto;
     }
 }

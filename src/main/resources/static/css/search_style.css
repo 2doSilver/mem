@@ -42,7 +42,7 @@ body{
 .wrap{
   width: 50%;
   position: absolute;
-  top: 70%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -51,4 +51,27 @@ body{
     position: relative;
     margin-top: 50px;
     margin-bottom: 50px;
+}
+
+.create-room-button {
+  background-color: #00B4CC;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 20px 40px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  width: 200px;
+}
+
+.create-room-button:hover {
+  background-color: #0099B9;
+}
+
+.create-room-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  margin-top: 100px;
 }

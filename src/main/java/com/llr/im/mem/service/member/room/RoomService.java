@@ -17,21 +17,18 @@ public class RoomService {
 
     private final RoomRepository roomRepository;
 
-
-//    public List<Room> getList() {
-//        return this.roomRepository.findAll();
-//    }
-
-
     public List<RoomDto> getList() {
 
         List<RoomDto> roomDtoList = this.roomRepository.findAll().stream()
                 .map(room -> new RoomDto(room.getRoomId(), room.getOwnerId(), room.getRoomName(),
-                        room.getRoomTag(), room.getRoomCode(), room.getRegDate()))
+                        room.getRoomTag(), room.getRoomCode(), room.getRegDate(), room.getUserSize(), room.getCoverPhoto()))
                 .collect(Collectors.toList());
 
         return roomDtoList;
     }
+
+
+
     public Room getRoom(Long roomId) {
         Optional<Room> room = this.roomRepository.findById(roomId);
         if (room.isPresent()) {

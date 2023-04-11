@@ -4,12 +4,14 @@ import com.llr.im.mem.controller.dto.room.RoomDto;
 import com.llr.im.mem.entity.room.Room;
 import com.llr.im.mem.service.member.room.RoomService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Base64;
 import java.util.List;
 
 //@RequiredArgsConstructor
@@ -18,6 +20,7 @@ import java.util.List;
 @RequestMapping("/room")
 @RequiredArgsConstructor
 @Controller
+@Slf4j
 public class RoomController {
 
 
@@ -29,6 +32,7 @@ public class RoomController {
     public String list(Model model) {
         List<RoomDto> roomList = this.roomService.getList();
         model.addAttribute("roomList", roomList);
+
         return "room_list";
     }
 
@@ -37,6 +41,9 @@ public class RoomController {
 
         Room room = this.roomService.getRoom(roomId);
         model.addAttribute("room", room);
+
         return "room_detail";
     }
+
+
 }

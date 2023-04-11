@@ -1,7 +1,7 @@
 <!--<h1>ROOM LIST 화면</h1>-->
 <!--<h2> !!!Hello LLR Project!!!</h2>-->
 
-<head>
+<head xmlns:th="http://www.w3.org/1999/xhtml">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/css/card_style.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar_style.css">
@@ -17,21 +17,22 @@
 <!--img슬라이더-->
 <div class="slider">
     <div class="slide">
-        <img src="/images/slider/slider_1.jpg" alt="Image 1">
+<!--        <img src="/images/slider/slider_1.jpg" alt="Image 1">-->
+        <img src="/img/slider/slider_1.jpg" alt="Image 1">
         <div class="text-overlay">
             <h2>원하는 방을 검색해보세요</h2>
             <p>😺자투리 시간을 커뮤니티에 사용하세요😸</p>
         </div>
     </div>
     <div class="slide">
-        <img src="/images/slider/slider_2.jpg" alt="Image 2">
+        <img src="/img/slider/slider_2.jpg" alt="Image 2">
         <div class="text-overlay">
             <h2>원하는 방을 만들어보세요</h2>
             <p>🐱누구나, 무엇이든, 언제든 가능해요😼</p>
         </div>
     </div>
     <div class="slide">
-        <img src="/images/slider/slider_3.jpg" alt="Image 3">
+        <img src="/img/slider/slider_3.jpg" alt="Image 3">
         <div class="text-overlay">
             <h2>함께할 친구를 만나보세요</h2>
             <p>😻새로운 친구들과 함께 만들어나가세요😽</p>
@@ -57,17 +58,25 @@
 <div class="card-container">
     <div th:each="room : ${roomList}">
         <div class="card">
-            <img class="card-cover-img" src="/images/cat.jpg"/>
+            <img th:src="'data:image/jpg;base64,' + ${room.coverPhotoBase64}" />
             <h3>
                 <a th:href="@{|/room/detail/${room.roomId}|}" th:text="${room.roomName}"></a>
             </h3>
             <p th:text="|✔${room.ownerId} 방장님✔|"></p>
             <div>
-                <img class="card-owner-img" src="/images/juuu.jpg"/>
+                <img class="card-owner-img" src="/img/juuu.jpg"/>
             </div>
             <p th:text="|✔모임 생성일 ${#temporals.format(room.regDate, 'yyyy-MM-dd')}✔|"></p>
         </div>
     </div>
 </div>
+
+<!--room 생성버튼-->
+<div class="create-room-container">
+    <a href="/room/create">
+    <button class="create-room-button">방 만들기</button>
+    </a>
+</div>
+
 </body>
 

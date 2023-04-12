@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/css/navbar_style.css">
     <link rel="stylesheet" type="text/css" href="/css/img_slider_style.css">
     <link rel="stylesheet" type="text/css" href="/css/search_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -41,16 +42,16 @@
 </div>
 
 <!--검색창-->
-<div class="search-container">
+<form action="/room/search" method="GET" class="search-container">
     <div class="wrap">
         <div class="search">
-            <input type="text" class="searchTerm" placeholder="What are you looking for?">
+            <input type="text" class="searchTerm" placeholder="What are you looking for?" name="keyword">
             <button type="submit" class="searchButton">
                 <i class="fa fa-search"></i>
             </button>
         </div>
     </div>
-</div>
+</form>
 
 
 <div class="card-container">
@@ -67,15 +68,16 @@
                 </div>
                 <p th:text="|✔모임 생성일 ${#temporals.format(room.regDate, 'yyyy-MM-dd')}✔|"></p>
 
-                <div>
-                    <div th:each="tag : ${room.roomTagList}" class="card-tag">
-                        <button type="button" class="card-roomtag" th:text="'#' + ${tag}" />
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="card-back">
-            <p th:text="${room.roomName}"></p>
+            <h3 th:text="${room.roomName}"></h3>
+            <div>
+                <div th:each="tag : ${room.roomTagList}" class="card-tag">
+                    <button type="button" class="card-roomtag" th:text="'#' + ${tag}" />
+                </div>
+            </div>
         </div>
     </div>
 </div>

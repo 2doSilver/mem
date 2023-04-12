@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Arrays;
 import java.util.Base64;
@@ -38,11 +39,16 @@ public class RoomController {
 
     @GetMapping(value = "/detail/{roomId}")
     public String detail(Model model, @PathVariable("roomId") Long roomId) {
-
         Room room = this.roomService.getRoom(roomId);
         model.addAttribute("room", room);
-
         return "room_detail";
+    }
+
+    @GetMapping(value = "/search")
+    public String search(@RequestParam("keyword") String keyword, Model model) {
+        List<RoomDto> searchList = this.roomService.search(keyword);
+        model.addAttribute("roomList", searchList);
+        return "room_list";
     }
 
 }

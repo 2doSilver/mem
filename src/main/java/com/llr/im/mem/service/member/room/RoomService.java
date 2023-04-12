@@ -31,7 +31,6 @@ public class RoomService {
                 })
                 .collect(Collectors.toList());
 
-
         return roomDtoList;
     }
 
@@ -44,6 +43,25 @@ public class RoomService {
         } else {
             throw new DataNotFoundException("!!!Room Not Found!!!");
         }
+    }
+
+
+    public List<RoomDto> search(String keyword) {
+
+        List<RoomDto> roomDtoList = this.roomRepository.findAll().stream().filter(
+                room -> room.getRoomName().contains(keyword) || room.getRoomTag().contains(keyword))
+                .map(room -> {RoomDto roomDto = new RoomDto(
+                        room.getRoomId(), room.getOwnerId(), room.getRoomName(),
+                        room.getRoomTag(),null, room.getRoomCode(), room.getRegDate(),
+                        room.getUserSize(), room.getCoverPhoto()
+                );
+
+                    roomDto.setRoomTagList(room.getRoomTag());
+                    return roomDto;
+                })
+                .collect(Collectors.toList());
+
+        return roomDtoList;
     }
 
 }

@@ -70,3 +70,15 @@
   border-radius: 20px;
   background-color: #0099B9;
 }
+
+.card-button {
+  display: inline-flex;
+  align-items: center;
+  color: white;
+  border-radius: 20px;
+  background-color: #0099B9;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}

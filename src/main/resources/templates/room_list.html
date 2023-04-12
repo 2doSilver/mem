@@ -67,16 +67,19 @@
                     <img class="card-owner-img" src="/img/juuu.jpg"/>
                 </div>
                 <p th:text="|✔모임 생성일 ${#temporals.format(room.regDate, 'yyyy-MM-dd')}✔|"></p>
-
-
             </div>
         </div>
         <div class="card-back">
-            <h3 th:text="${room.roomName}"></h3>
+            <h3>
+                <a th:href="@{|/room/detail/${room.roomId}|}" th:text="${room.roomName}"></a>
+            </h3>
             <div>
                 <div th:each="tag : ${room.roomTagList}" class="card-tag">
                     <button type="button" class="card-roomtag" th:text="'#' + ${tag}" />
                 </div>
+            </div>
+            <div class="card-button">
+                <a th:href="@{|/room/detail/${room.roomId}|}" class="btn btn-primary">방 입장하기</a>
             </div>
         </div>
     </div>

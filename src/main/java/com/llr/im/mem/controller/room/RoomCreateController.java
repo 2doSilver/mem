@@ -55,6 +55,7 @@ public class RoomCreateController {
                     roomCreateForm.getOwnerId(),
                     roomCreateForm.getRoomName(),
                     roomCreateForm.getRoomTag(),
+                    null,
                     roomCreateForm.getRoomCode(),
                     LocalDateTime.now(),
                     roomCreateForm.getUserSize(),

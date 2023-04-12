@@ -20,9 +20,17 @@ public class RoomService {
     public List<RoomDto> getList() {
 
         List<RoomDto> roomDtoList = this.roomRepository.findAll().stream()
-                .map(room -> new RoomDto(room.getRoomId(), room.getOwnerId(), room.getRoomName(),
-                        room.getRoomTag(), room.getRoomCode(), room.getRegDate(), room.getUserSize(), room.getCoverPhoto()))
+                .map(room -> {
+                    RoomDto roomDto = new RoomDto(
+                            room.getRoomId(), room.getOwnerId(), room.getRoomName(),
+                            room.getRoomTag(),null, room.getRoomCode(), room.getRegDate(),
+                            room.getUserSize(), room.getCoverPhoto()
+                    );
+                    roomDto.setRoomTagList(room.getRoomTag());
+                    return roomDto;
+                })
                 .collect(Collectors.toList());
+
 
         return roomDtoList;
     }

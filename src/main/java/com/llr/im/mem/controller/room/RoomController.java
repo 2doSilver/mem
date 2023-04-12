@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 
@@ -32,7 +33,6 @@ public class RoomController {
     public String list(Model model) {
         List<RoomDto> roomList = this.roomService.getList();
         model.addAttribute("roomList", roomList);
-
         return "room_list";
     }
 
@@ -44,6 +44,5 @@ public class RoomController {
 
         return "room_detail";
     }
-
 
 }

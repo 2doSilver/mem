@@ -53,23 +53,58 @@
 </div>
 
 
-
-<!--room-->
 <div class="card-container">
-    <div th:each="room : ${roomList}">
-        <div class="card">
-            <img th:src="'data:image/jpg;base64,' + ${room.coverPhotoBase64}" />
-            <h3>
-                <a th:href="@{|/room/detail/${room.roomId}|}" th:text="${room.roomName}"></a>
-            </h3>
-            <p th:text="|✔${room.ownerId} 방장님✔|"></p>
+    <div th:each="room : ${roomList}" class="card">
+        <div class="card-front">
             <div>
-                <img class="card-owner-img" src="/img/juuu.jpg"/>
+                <img class="card-cover-img" th:src="'data:image/jpg;base64,' + ${room.coverPhotoBase64}" />
+                <h3>
+                    <a th:href="@{|/room/detail/${room.roomId}|}" th:text="${room.roomName}"></a>
+                </h3>
+                <p th:text="|✔${room.ownerId} 방장님✔|"></p>
+                <div>
+                    <img class="card-owner-img" src="/img/juuu.jpg"/>
+                </div>
+                <p th:text="|✔모임 생성일 ${#temporals.format(room.regDate, 'yyyy-MM-dd')}✔|"></p>
+
+                <div>
+                    <div th:each="tag : ${room.roomTagList}" class="card-tag">
+                        <button type="button" class="card-roomtag" th:text="'#' + ${tag}" />
+                    </div>
+                </div>
             </div>
-            <p th:text="|✔모임 생성일 ${#temporals.format(room.regDate, 'yyyy-MM-dd')}✔|"></p>
+        </div>
+        <div class="card-back">
+            <p th:text="${room.roomName}"></p>
         </div>
     </div>
 </div>
+
+
+
+<!--&lt;!&ndash;room&ndash;&gt;-->
+<!--<div class="card-container">-->
+<!--    <div th:each="room : ${roomList}">-->
+<!--        <div class="card">-->
+<!--                <img th:src="'data:image/jpg;base64,' + ${room.coverPhotoBase64}" />-->
+<!--                <h3>-->
+<!--                    <a th:href="@{|/room/detail/${room.roomId}|}" th:text="${room.roomName}"></a>-->
+<!--                </h3>-->
+<!--                <p th:text="|✔${room.ownerId} 방장님✔|"></p>-->
+<!--                <div>-->
+<!--                    <img class="card-owner-img" src="/img/juuu.jpg"/>-->
+<!--                </div>-->
+<!--                <p th:text="|✔모임 생성일 ${#temporals.format(room.regDate, 'yyyy-MM-dd')}✔|"></p>-->
+
+<!--                <div class="tag-container">-->
+<!--                    <div th:each="tag : ${room.roomTagList}" class="card-tag">-->
+<!--                        <button type="button" class="btn btn-secondary" th:text="'#' + ${tag}" />-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
 
 <!--room 생성버튼-->
 <div class="create-room-container">

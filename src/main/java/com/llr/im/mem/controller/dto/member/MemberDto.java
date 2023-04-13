@@ -8,7 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class MemberDto {
+public class  MemberDto{
+    private Long id;
     private String userId;
     private String userName;
     private String fileName;

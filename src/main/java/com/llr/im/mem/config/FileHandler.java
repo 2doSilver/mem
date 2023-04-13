@@ -1,6 +1,7 @@
 package com.llr.im.mem.config;
 
 import com.llr.im.mem.entity.member.Member;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Component
+@Slf4j
 public class FileHandler {
 
     public Member parseFileInfo(
@@ -34,10 +36,9 @@ public class FileHandler {
 
         // 경로를 지정하고 그곳에다가 저장
         String path = "/images/" + current_date;
-        File file = new File(path);
+        File file = new File(absolutePath + path);
         // 저장할 위치의 디렉토리가 존지하지 않을 경우
         if (!file.exists()) {
-            // mkdir() 함수와 다른 점은 상위 디렉토리가 존재하지 않을 때 그것까지 생성
             file.mkdirs();
         }
 

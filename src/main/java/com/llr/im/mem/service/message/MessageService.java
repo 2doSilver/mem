@@ -7,7 +7,9 @@ import com.llr.im.mem.entity.member.Member;
 import com.llr.im.mem.entity.member.MemberRepository;
 import com.llr.im.mem.entity.message.Message;
 import com.llr.im.mem.entity.message.MessageRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +49,17 @@ public class MessageService {
 
     public void deleteMessage(Long msgId) {
         messageRepository.deleteById(msgId);
+    }
+
+    public MessageListDto setMessageRead(Long msgId, Boolean receiveChk) {
+        if (!receiveChk) {
+            messageRepository.updateReceiveChk(msgId);
+        }
+
+        Message message = messageRepository.findById(msgId).orElseThrow(NullPointerException::new);
+
+        ModelMapper modelMapper = new ModelMapper();
+
+        return modelMapper.map(message, MessageListDto.class);
     }
 }

@@ -29,3 +29,12 @@
 .slide:hover .text-overlay {
   opacity: 1;
 }
+
+/* hover-effect 클래스에 마우스를 올렸을 때 앞으로 튀어나오는 효과를 적용합니다. */
+.hover-effect:hover {
+  position: relative;
+  z-index: 1;
+  transform: scale(1.1);
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}

@@ -57,11 +57,9 @@ Favicons
 
   <title>Hello</title>
 </head>
-<body class=" bg-light" data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
-<!-- 네비게이션바 -->
-<nav th:replace="~{layout/navbar :: navbarFragment}"></nav>
+<body class=" bg-light" data-spy="scroll" data-target=".onpage-navigation" data-offset="60" style=" width: 350px; height: 450px;">
 <!-- 기본 템플릿 안에 삽입될 내용 Start -->
-<th:block layout:fragment="content"></th:block>
+<th:block layout:fragment="popupContent"></th:block>
 <!-- 기본 템플릿 안에 삽입될 내용 End -->
 
 <!--

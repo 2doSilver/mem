@@ -1,7 +1,9 @@
 package com.llr.im.mem.controller.mypage;
 
 import com.llr.im.mem.controller.dto.friend.FriendListDto;
-import com.llr.im.mem.controller.dto.member.MemberDto;
+import com.llr.im.mem.controller.dto.member.EditProfileDto;
+import com.llr.im.mem.controller.dto.member.MemberDto
+        ;
 import com.llr.im.mem.controller.dto.message.MessageListDto;
 import com.llr.im.mem.controller.dto.room.RoomDto;
 import com.llr.im.mem.controller.dto.roomjoin.RoomJoinDto;
@@ -12,11 +14,13 @@ import com.llr.im.mem.service.member.MemberService;
 import com.llr.im.mem.service.member.room.RoomJoinService;
 import com.llr.im.mem.service.member.room.RoomService;
 import com.llr.im.mem.service.message.MessageService;
-import groovy.util.logging.Slf4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -57,5 +61,22 @@ public class MyPageController {
         model.addAttribute("messageList", messageListDtoList);
 
         return "mypage/myPageMain";
+    }
+
+    @GetMapping("/profile/pic")
+    public String profilePicSelect(Model model) {
+        Long id = 99999999L;
+
+        //
+        model.addAttribute("id", id);
+
+        return "mypage/editProfilePic";
+    }
+
+    @PostMapping("/profile/pic")
+    public String profilePicEdit(@ModelAttribute EditProfileDto editProfileDto, Model model) throws Exception {
+        memberService.updateProfilePic(editProfileDto);
+
+        return "";
     }
 }

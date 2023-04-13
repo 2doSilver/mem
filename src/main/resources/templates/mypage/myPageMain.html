@@ -6,16 +6,25 @@
     <div class="left" style="flex: 1; display: flex; flex-direction: column; padding: 5px;">
         <div class="profile" style="border: 3px solid; flex: 3; text-align: center; display: flex; flex-direction: column; margin-bottom: 10px;">
             <div style="flex: 9;">
-                <img th:src="${member.fileName}" th:alt="${member.userName}">
+                <div style=" border: 2px dashed; width: 250px; height: 250px; border-radius: 70%; overflow: hidden; margin: auto; margin-top: 10px;">
+                    <img th:src="${member.fileName}" th:alt="${member.userName}">
+                </div>
             </div>
-            <h3 class="content-box-title font-serif" style="float: left;" th:text="${member.userName}"/>
+            <div>
+                <p class="content-box-title font-serif" th:text="${member.userName}"/>
+                <a href="javascript:void(0)" onclick="profileEdit()">
+                    <img th:src="@{/icon/edit_icon.png}" style="width: 20px; float: right; clear:both;">
+                </a>
+            </div>
         </div>
         <div class="friend" style="border: 3px solid; flex: 4; padding: 5px;">
             <div th:each="friend : ${friendList}" style="display: inline-block;">
-                <div class="content-box-image" style="width: 80px; height: 80px; border-radius: 70%; overflow: hidden; margin: 5px;">
-                    <img th:src="${friend.fileName}" th:alt="${friend.userName}">
-                    링크 걸기
-                </div>
+                <a href="javascript:void(0)" th:onclick="|memberPopup(${friend.id})|">
+                    <div class="content-box-image"
+                         style="width: 80px; height: 80px; border-radius: 70%; overflow: hidden; margin: 5px;">
+                        <img th:src="${friend.fileName}" th:alt="${friend.userName}">
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -28,14 +37,25 @@
         <div th:unless="${roomJoinList == null}" style="display: flex; flex-wrap: wrap;">
             <div th:each="roomJoin : ${roomJoinList}" style="flex-basis: 33.33%; padding: 5px;">
                 <a th:href="@{/room/detail/{roomId}(roomId = ${roomJoin.room.roomId})}">
-                    <div style="height: 70px; border: 1px dashed; padding: 10px; display: flex;">
+                    <div class="hover-effect" style="height: 70px; border: 1px dashed; padding: 10px; display: flex;">
                         <div th:text="|${roomJoin.room.roomName} (${roomJoin.activeName})|" style="flex: 1;"></div>
                     </div>
                 </a>
             </div>
         </div>
     </div>
+
     <div class="right" style="flex: 1; padding: 5px; ">
+        <div style="margin: 10px; height: 50px;">
+            <a class="btn btn-outline-dark" style="float: left;"
+                    th:href="@{|/message/${member.id}/receiveList|}">
+                받은 메세지
+            </a>
+            <a class="btn btn-outline-dark" style="float: right;"
+                    th:href="@{|/message/${member.id}/sendList|}">
+                보낸 메세지
+            </a>
+        </div>
         <div th:if="${messageList == null}">
             <div style="width:100%; height: 70px; border: 1px dashed; padding: 10px; display: flex;">
                 수신된 메세지가 없습니다.
@@ -43,7 +63,7 @@
         </div>
         <div th:unless="${messageList == null}">
             <div th:each="message : ${messageList}">
-                <a href="#">
+                <a th:onclick="|messageReadPopup(${message.id}, ${message.receiveChk})|">
                     <div style="width:100%; height: 70px; border: 1px dashed; padding: 10px; display: flex; margin-bottom: 10px;">
                         <div th:text="${message.content}" style="flex: 6; overflow: hidden; text-overflow:ellipsis;"></div>
                         <div style="flex: 1;">

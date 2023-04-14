@@ -1,11 +1,13 @@
 package com.llr.im.mem.controller.dto.room;
 
+import com.llr.im.mem.controller.dto.roomjoin.RoomJoinDto;
 import com.llr.im.mem.entity.room.Room;
 import com.llr.im.mem.entity.roomjoin.RoomJoin;
 import lombok.*;
 import org.springframework.security.core.userdetails.User;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
@@ -37,6 +39,7 @@ public class RoomDto {
     private byte[] coverPhoto; // 이미지 파일을 받을 수 있는 필드
 
   //  private List<String> roomJoinList;
+  //  private List<RoomJoinDto> roomJoinList = new ArrayList<>();
 
     private List<RoomJoin> roomJoinList;
 //

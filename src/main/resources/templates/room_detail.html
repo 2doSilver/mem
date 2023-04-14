@@ -12,24 +12,6 @@
 <body>
 <!--네비게이션바-->
 <div class="navbar" th:replace="navbar :: navbar"></div>
-
-<!--<div>-->
-<!--    <div>-->
-<!--        <img class="card-img-left" th:src="'data:image/jpg;base64,' + ${room.coverPhotoBase64}" />-->
-<!--    </div>-->
-<!--    <div >-->
-<!--        <h3 th:text="${room.roomName}"></h3>-->
-<!--        <h4 th:text="|방장 : ${room.ownerId}|"></h4>-->
-<!--        <div  th:text="|현재 ${#lists.size(room.roomJoinList)}명의 참여자가 있습니다.|"></div>-->
-<!--        <div>-->
-<!--            <ul>-->
-<!--                <li th:each="roomJoin : ${room.roomJoinList}" th:text="${roomJoin?.activeName}"></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--        <button  th:onclick="|location.href='@{|/room/${room.roomId}/join|}'|">참여하기</button>-->
-<!--    </div>-->
-<!--</div>-->
-
 <div class="card">
     <div class="card-horizontal">
         <div class="img-square-wrapper">
@@ -38,12 +20,25 @@
         <div class="card-body">
             <h3 class="card-title" th:text="${room.roomName}"></h3>
             <h4 th:text="|방장 : ${room.ownerId}|"></h4>
-            <div  th:text="|현재 ${#lists.size(roomDto.roomJoinList)}명의 참여자가 있습니다.|"></div>
-            <div>
-                <ul>
-                    <li th:each="roomJoin : ${roomDto.roomJoinList}" th:text="${roomJoin?.activeName}"></li>
-                </ul>
+
+            <div th:if="${room != null}">
+                <div th:text="|현재 ${#lists.size(room.roomJoinList)}명의 참여자가 있습니다.|"></div>
+                <div>
+                    <ul>
+                        <li th:each="roomJoin : ${room.roomJoinList}" th:text="${roomJoin?.activeName}"></li>
+                    </ul>
+                </div>
             </div>
+<!--            <div th:unless="${roomDto != null}">-->
+<!--                <p>참여자가 없습니다.</p>-->
+<!--            </div>-->
+
+<!--            <div  th:text="|현재 ${#lists.size(roomDto.roomJoinList)}명의 참여자가 있습니다.|"></div>-->
+<!--            <div>-->
+<!--                <ul>-->
+<!--                    <li th:each="roomJoin : ${roomDto.roomJoinList}" th:text="${roomJoin?.activeName}"></li>-->
+<!--                </ul>-->
+<!--            </div>-->
             <button  th:onclick="|location.href='@{|/room/${room.roomId}/join|}'|">참여하기</button>
         </div>
     </div>

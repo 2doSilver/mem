@@ -17,21 +17,25 @@ public class RoomService {
 
     private final RoomRepository roomRepository;
 
-
-//    public List<Room> getList() {
-//        return this.roomRepository.findAll();
-//    }
-
-
     public List<RoomDto> getList() {
 
         List<RoomDto> roomDtoList = this.roomRepository.findAll().stream()
-                .map(room -> new RoomDto(room.getRoomId(), room.getOwnerId(), room.getRoomName(),
-                        room.getRoomTag(), room.getRoomCode(), room.getRegDate()))
+                .map(room -> {
+                    RoomDto roomDto = new RoomDto(
+                            room.getRoomId(), room.getOwnerId(), room.getRoomName(),
+                            room.getRoomTag(),null, room.getRoomCode(), room.getRegDate(),
+                            room.getUserSize(), room.getCoverPhoto(), room.getRoomJoinList()
+                    );
+                    roomDto.setRoomTagList(room.getRoomTag());
+                    return roomDto;
+                })
                 .collect(Collectors.toList());
 
         return roomDtoList;
     }
+
+
+
     public Room getRoom(Long roomId) {
         Optional<Room> room = this.roomRepository.findById(roomId);
         if (room.isPresent()) {
@@ -39,6 +43,38 @@ public class RoomService {
         } else {
             throw new DataNotFoundException("!!!Room Not Found!!!");
         }
+    }
+
+    public RoomDto getRoomDto(Long roomId) {
+        Room room = this.roomRepository.findById(roomId).orElseThrow(() -> new IllegalArgumentException("Invalid room ID"));
+        RoomDto roomDto = RoomDto.builder()
+                .roomId(room.getRoomId())
+                .ownerId(room.getOwnerId())
+                .roomName(room.getRoomName())
+                .roomTag(room.getRoomTag())
+                .regDate(room.getRegDate())
+                .coverPhoto(room.getCoverPhoto())
+                .build();
+        roomDto.setRoomTagList(room.getRoomTag());
+        return roomDto;
+    }
+
+    public List<RoomDto> search(String keyword) {
+
+        List<RoomDto> roomDtoList = this.roomRepository.findAll().stream().filter(
+                room -> room.getRoomName().contains(keyword) || room.getRoomTag().contains(keyword))
+                .map(room -> {RoomDto roomDto = new RoomDto(
+                        room.getRoomId(), room.getOwnerId(), room.getRoomName(),
+                        room.getRoomTag(),null, room.getRoomCode(), room.getRegDate(),
+                        room.getUserSize(), room.getCoverPhoto(), room.getRoomJoinList()
+                );
+
+                    roomDto.setRoomTagList(room.getRoomTag());
+                    return roomDto;
+                })
+                .collect(Collectors.toList());
+
+        return roomDtoList;
     }
 
 }

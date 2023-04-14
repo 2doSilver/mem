@@ -6,7 +6,7 @@
   <form name="form" method="post" th:action="@{/mypage/profile/pic}" enctype="multipart/form-data">
     <input class="form-control form-control-sm" type="file" name="file" multiple="multiple" required/>
     <input type="hidden" th:field="${id}" name="id" />
-      <br>
+      <br><br>
     <button type="submit" class="btn btn-primary bi bi-person">수정</button>
     <button class="btn btn-outline-primary bi bi-person" onclick="quit()">취소</button>
   </form>

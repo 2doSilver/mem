@@ -4,12 +4,16 @@ import com.llr.im.mem.controller.dto.room.RoomDto;
 import com.llr.im.mem.entity.room.Room;
 import com.llr.im.mem.service.member.room.RoomService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 //@RequiredArgsConstructor
@@ -18,6 +22,7 @@ import java.util.List;
 @RequestMapping("/room")
 @RequiredArgsConstructor
 @Controller
+@Slf4j
 public class RoomController {
 
 
@@ -34,9 +39,19 @@ public class RoomController {
 
     @GetMapping(value = "/detail/{roomId}")
     public String detail(Model model, @PathVariable("roomId") Long roomId) {
-
-        Room room = this.roomService.getRoom(roomId);
-        model.addAttribute("room", room);
+        //Room room = this.roomService.getRoom(roomId);
+        RoomDto roomDto = this.roomService.getRoomDto(roomId);
+        //model.addAttribute("room", room);
+        model.addAttribute("room", roomDto);
+        model.addAttribute("roomJoinList", roomDto.getRoomJoinList());
         return "room_detail";
     }
+
+    @GetMapping(value = "/search")
+    public String search(@RequestParam("keyword") String keyword, Model model) {
+        List<RoomDto> searchList = this.roomService.search(keyword);
+        model.addAttribute("roomList", searchList);
+        return "room_list";
+    }
+
 }

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layout/popupLayout}">
+<div layout:fragment="popupContent" style="margin: 10px;">
+    <h3>프로필 사진 편집</h3>
+    <br>
+  <form name="form" method="post" th:action="@{/mypage/profile/pic}" enctype="multipart/form-data">
+    <input class="form-control form-control-sm" type="file" name="file" multiple="multiple" required/>
+    <input type="hidden" th:field="${id}" name="id" />
+      <br>
+    <button type="submit" class="btn btn-primary bi bi-person">수정</button>
+    <button class="btn btn-outline-primary bi bi-person" onclick="quit()">취소</button>
+  </form>
+</div>
+</html>

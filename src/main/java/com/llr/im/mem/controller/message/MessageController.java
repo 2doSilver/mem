@@ -60,4 +60,12 @@ public class MessageController {
 
         return "redirect:/message/" + 99999999 + "/list";
     }
+
+    @GetMapping("/popup/{msgId}/{receiveChk}")
+    public String messageReadPopup(@PathVariable Long msgId, @PathVariable Boolean receiveChk, Model model) {
+        MessageListDto message = messageService.setMessageRead(msgId, receiveChk);
+        model.addAttribute("message", message);
+
+        return "mypage/messagePopup";
+    }
 }

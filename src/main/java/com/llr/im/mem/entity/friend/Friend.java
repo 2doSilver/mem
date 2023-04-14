@@ -6,10 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
-@Builder
+@NoArgsConstructor
 public class Friend {
 
     @Id

@@ -25,20 +25,23 @@
                 <div th:text="|현재 ${#lists.size(room.roomJoinList)}명의 참여자가 있습니다.|"></div>
                 <div>
                     <ul>
-                        <li th:each="roomJoin : ${room.roomJoinList}" th:text="${roomJoin?.activeName}"></li>
+                        <th:block th:each="roomJoin : ${room.roomJoinList}">
+                            <a href="javascript:void(0)" th:onclick="|memberPopup(${roomJoin.member.id})|"
+                               th:inline="text">
+                                [[${roomJoin.activeName}]]
+                            </a>
+                            <br />
+                        </th:block>
                     </ul>
+
+<!--                    <ul>-->
+<!--                        <a href="javascript:void(0)" th:onclick="|memberPopup(${friend.id})|">-->
+<!--                        <li th:each="roomJoin : ${room.roomJoinList}" th:text="${roomJoin?.activeName}"></li>-->
+<!--                        </a>-->
+<!--                    </ul>-->
                 </div>
             </div>
-<!--            <div th:unless="${roomDto != null}">-->
-<!--                <p>참여자가 없습니다.</p>-->
-<!--            </div>-->
 
-<!--            <div  th:text="|현재 ${#lists.size(roomDto.roomJoinList)}명의 참여자가 있습니다.|"></div>-->
-<!--            <div>-->
-<!--                <ul>-->
-<!--                    <li th:each="roomJoin : ${roomDto.roomJoinList}" th:text="${roomJoin?.activeName}"></li>-->
-<!--                </ul>-->
-<!--            </div>-->
             <button  th:onclick="|location.href='@{|/room/${room.roomId}/join|}'|">참여하기</button>
         </div>
     </div>
@@ -58,3 +61,4 @@
 <!--    </div>-->
 <!--</div>-->
 </body>
+<script th:src="@{/script.js}"></script>

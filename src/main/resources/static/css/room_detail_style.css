@@ -1,0 +1,8 @@
+.card {
+  display: center;
+  width: 500px;
+  height: 300px;
+  grid-gap: 20px;
+  justify-items: center;
+  margin-top: 100px;
+}

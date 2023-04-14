@@ -59,7 +59,8 @@ public class RoomCreateController {
                     roomCreateForm.getRoomCode(),
                     LocalDateTime.now(),
                     roomCreateForm.getUserSize(),
-                    roomCreateForm.getCoverPhoto().getBytes()
+                    roomCreateForm.getCoverPhoto().getBytes(),
+                    null
             );
 
             Room createdRoom = roomCreateService.create(roomDto);

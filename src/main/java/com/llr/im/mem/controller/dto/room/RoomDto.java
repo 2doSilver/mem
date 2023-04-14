@@ -1,7 +1,9 @@
 package com.llr.im.mem.controller.dto.room;
 
 import com.llr.im.mem.entity.room.Room;
+import com.llr.im.mem.entity.roomjoin.RoomJoin;
 import lombok.*;
+import org.springframework.security.core.userdetails.User;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -10,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Builder
+@AllArgsConstructor
 @Setter
 @Getter
 public class RoomDto {
@@ -33,21 +36,23 @@ public class RoomDto {
 
     private byte[] coverPhoto; // 이미지 파일을 받을 수 있는 필드
 
+  //  private List<String> roomJoinList;
 
-    public RoomDto(Long roomId, String ownerId, String roomName, String roomTag, List<String> roomTagList, String roomCode,
-                   LocalDateTime regDate, Integer userSize, byte[] coverPhoto) {
-
-        this.roomId = roomId;
-        this.ownerId = ownerId;
-        this.roomName = roomName;
-        this.roomTag = roomTag;
-        this.roomTagList = roomTagList;
-        this.roomCode = roomCode;
-        this.regDate = regDate;
-        this.userSize = userSize;
-        this.coverPhoto = coverPhoto;
-
-    }
+    private List<RoomJoin> roomJoinList;
+//
+//    public RoomDto(Long roomId, String ownerId, String roomName, String roomTag, List<String> roomTagList, String roomCode,
+//                   LocalDateTime regDate, Integer userSize, byte[] coverPhoto) {
+//
+//        this.roomId = roomId;
+//        this.ownerId = ownerId;
+//        this.roomName = roomName;
+//        this.roomTag = roomTag;
+//        this.roomTagList = roomTagList;
+//        this.roomCode = roomCode;
+//        this.regDate = regDate;
+//        this.userSize = userSize;
+//        this.coverPhoto = coverPhoto;
+//    }
 
     //카드 커버사진 인코딩
     public String getCoverPhotoBase64() {

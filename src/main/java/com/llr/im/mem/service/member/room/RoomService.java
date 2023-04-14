@@ -24,7 +24,7 @@ public class RoomService {
                     RoomDto roomDto = new RoomDto(
                             room.getRoomId(), room.getOwnerId(), room.getRoomName(),
                             room.getRoomTag(),null, room.getRoomCode(), room.getRegDate(),
-                            room.getUserSize(), room.getCoverPhoto()
+                            room.getUserSize(), room.getCoverPhoto(), room.getRoomJoinList()
                     );
                     roomDto.setRoomTagList(room.getRoomTag());
                     return roomDto;
@@ -45,6 +45,19 @@ public class RoomService {
         }
     }
 
+    public RoomDto getRoomDto(Long roomId) {
+        Room room = this.roomRepository.findById(roomId).orElseThrow(() -> new IllegalArgumentException("Invalid room ID"));
+        RoomDto roomDto = RoomDto.builder()
+                .roomId(room.getRoomId())
+                .ownerId(room.getOwnerId())
+                .roomName(room.getRoomName())
+                .roomTag(room.getRoomTag())
+                .regDate(room.getRegDate())
+                .coverPhoto(room.getCoverPhoto())
+                .build();
+        roomDto.setRoomTagList(room.getRoomTag());
+        return roomDto;
+    }
 
     public List<RoomDto> search(String keyword) {
 
@@ -53,7 +66,7 @@ public class RoomService {
                 .map(room -> {RoomDto roomDto = new RoomDto(
                         room.getRoomId(), room.getOwnerId(), room.getRoomName(),
                         room.getRoomTag(),null, room.getRoomCode(), room.getRegDate(),
-                        room.getUserSize(), room.getCoverPhoto()
+                        room.getUserSize(), room.getCoverPhoto(), room.getRoomJoinList()
                 );
 
                     roomDto.setRoomTagList(room.getRoomTag());

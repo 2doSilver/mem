@@ -17,11 +17,6 @@ public class RoomCreateService {
 
     private final RoomRepository roomRepository;
 
-//    public Room create(RoomDto roomDto) {
-//        Room room = roomRepository.save(roomDto.toEntity());
-//        return room;
-//    }
-
     public Room create(RoomDto roomDto) throws IOException {
         Room room = roomRepository.save(roomDto.toEntity());
         return room;

@@ -6,3 +6,7 @@
   justify-items: center;
   margin-top: 100px;
 }
+
+.img-square-wrapper {
+    width: 200px;
+}

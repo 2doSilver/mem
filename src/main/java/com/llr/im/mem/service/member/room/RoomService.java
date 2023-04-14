@@ -3,6 +3,7 @@ package com.llr.im.mem.service.member.room;
 import com.llr.im.mem.controller.dto.room.RoomDto;
 import com.llr.im.mem.entity.room.Room;
 import com.llr.im.mem.entity.room.RoomRepository;
+import com.llr.im.mem.entity.roomjoin.RoomJoin;
 import com.llr.im.mem.exception.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,7 @@ public class RoomService {
 
     public RoomDto getRoomDto(Long roomId) {
         Room room = this.roomRepository.findById(roomId).orElseThrow(() -> new IllegalArgumentException("Invalid room ID"));
+        List<RoomJoin> roomJoinList = room.getRoomJoinList();
         RoomDto roomDto = RoomDto.builder()
                 .roomId(room.getRoomId())
                 .ownerId(room.getOwnerId())
@@ -54,6 +56,7 @@ public class RoomService {
                 .roomTag(room.getRoomTag())
                 .regDate(room.getRegDate())
                 .coverPhoto(room.getCoverPhoto())
+                .roomJoinList(roomJoinList)
                 .build();
         roomDto.setRoomTagList(room.getRoomTag());
         return roomDto;

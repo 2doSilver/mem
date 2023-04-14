@@ -9,6 +9,8 @@ import java.util.Date;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class MessageListDto {
 
     private Long id;

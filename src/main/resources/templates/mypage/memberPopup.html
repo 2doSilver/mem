@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layout/popupLayout}">
+  <div layout:fragment="popupContent" style="display: flex; flex-direction: column; width: 100%; height: 100%;">
+      <div style="flex: 6; border: 1px solid;">
+          <img th:src="${member.fileName}" th:alt="${member.userName}">
+      </div>
+      <div style="flex: 2; border: 2px solid;">
+          <h3 th:text="${member.userName}"></h3>
+      </div>
+      <div th:if="${friend == null}" style="flex: 2; border: 2px solid;">
+          <button>친구 신청</button>
+      </div>
+      <div th:unless="${friend == null}" style="flex: 2; border: 2px solid;">
+          <a class="btn btn-outline-dark" style=""
+             th:no="${member.id}" th:userName="${member.userName}" th:userId="${member.userId}"
+             onclick="messagePopup2(this.getAttribute('no'), this.getAttribute('userName'), this.getAttribute('userId'))">
+              쪽지
+          </a>
+          <a class="btn btn-outline-dark" style="" href="#">
+              채팅
+          </a>
+      </div>
+  </div>
+</html>

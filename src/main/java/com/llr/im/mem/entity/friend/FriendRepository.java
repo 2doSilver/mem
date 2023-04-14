@@ -12,4 +12,6 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
 
     @Query(value = "SELECT M.* FROM FRIEND F, MEMBER M WHERE F.MEMBER_ID = M.ID AND F.MEMBER_ID = :id", nativeQuery = true)
     Optional<Member> findMemberByMemberId(@Param("id") Long memberId);
+
+    Friend findByMemberIdAndFriendId(Long memberId, Long friendId);
 }

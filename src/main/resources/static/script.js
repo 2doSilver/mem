@@ -42,6 +42,22 @@ function messagePopup2(id, name, userId) {
     form.submit();
 }
 
+function profileEdit() {
+    let options = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=400, height=200, top=0,left=0";
+    window.open('/mypage/profile/pic', '_blank', options);
+}
+
+function messageReadPopup(msgId, receiveChk) {
+    let options = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=400, height=500, top=0,left=0";
+    window.open('/message/popup/' + msgId +'/' + receiveChk, '_blank', options);
+}
+
+function memberPopup(memberId) {
+    let options = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=400, height=500, top=0,left=0";
+    window.open('/member/popup/' + memberId, '_blank', options);
+}
+
 function quit() {
     window.close();
+    opener.location.reload();
 }

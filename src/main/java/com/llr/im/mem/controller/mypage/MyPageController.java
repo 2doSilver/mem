@@ -1,18 +1,14 @@
 package com.llr.im.mem.controller.mypage;
 
-import com.llr.im.mem.controller.dto.friend.FriendListDto;
+import com.llr.im.mem.controller.dto.follow.FollowListDto;
 import com.llr.im.mem.controller.dto.member.EditProfileDto;
 import com.llr.im.mem.controller.dto.member.MemberDto
         ;
 import com.llr.im.mem.controller.dto.message.MessageListDto;
-import com.llr.im.mem.controller.dto.room.RoomDto;
-import com.llr.im.mem.controller.dto.roomjoin.RoomJoinDto;
 import com.llr.im.mem.controller.dto.roomjoin.UserJoinRoomListDto;
-import com.llr.im.mem.entity.roomjoin.RoomJoin;
-import com.llr.im.mem.service.friend.FriendService;
+import com.llr.im.mem.service.follow.FollowService;
 import com.llr.im.mem.service.member.MemberService;
 import com.llr.im.mem.service.member.room.RoomJoinService;
-import com.llr.im.mem.service.member.room.RoomService;
 import com.llr.im.mem.service.message.MessageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +29,7 @@ public class MyPageController {
     @Autowired
     private MemberService memberService;
     @Autowired
-    private FriendService friendService;
+    private FollowService followService;
 
     @Autowired
     private RoomJoinService roomJoinService;
@@ -48,9 +44,13 @@ public class MyPageController {
         MemberDto memberDto = memberService.getMemberInfo(id);
         model.addAttribute("member", memberDto);
 
-        // 2. 친구
-        List<FriendListDto> friendListDtoList = friendService.getFriendList(id);
-        model.addAttribute("friendList", friendListDtoList);
+        // 2-1. 팔로잉
+        List<FollowListDto> followingListDtoList = followService.getFollowingList(id);
+        model.addAttribute("followingList", followingListDtoList);
+
+        // 2-2. 팔로잉
+        List<FollowListDto> followerListDtoList = followService.getFollowerList(id);
+        model.addAttribute("followerList", followerListDtoList);
 
         // 3. 방
         List<UserJoinRoomListDto> userJoinRoomListDtoList = roomJoinService.getUserRoomList(id);

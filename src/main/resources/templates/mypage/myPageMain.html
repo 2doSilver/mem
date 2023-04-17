@@ -2,6 +2,7 @@
 <html lang="ko" layout:decorate="~{layout/layout}">
 <meta charset="UTF-8">
 
+<
 <div layout:fragment="content" class="parent bg-light" style="width: 100%; height: 100vh; display: flex;">
     <div class="left" style="flex: 1; display: flex; flex-direction: column; padding: 5px;">
         <div class="profile" style="border: 3px solid; flex: 3; text-align: center; display: flex; flex-direction: column; margin-bottom: 10px;">
@@ -17,16 +18,34 @@
                 </a>
             </div>
         </div>
-        <div class="friend" style="border: 3px solid; flex: 4; padding: 5px;">
-            <div th:each="friend : ${friendList}" style="display: inline-block;">
-                <a href="javascript:void(0)" th:onclick="|memberPopup(${friend.id})|">
-                    <div class="content-box-image"
-                         style="width: 80px; height: 80px; border-radius: 70%; overflow: hidden; margin: 5px;">
-                        <img th:src="${friend.fileName}" th:alt="${friend.userName}">
-                    </div>
-                </a>
+        <div class="follow" style="border: 3px solid; flex: 4; padding: 5px;">
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+                <button class="tablink active btn btn-outline-dark" style="flex-grow: 1;"
+                        onclick="openTabContent(event, 'following')">팔로잉</button>
+                <button class="tablink btn btn-outline-dark" style="flex-grow: 1;"
+                        onclick="openTabContent(event, 'follower')">팔로워</button>
+            </div>
+            <div id="following" class="tabcontent" style="display: block;">
+                <div th:each="following : ${followingList}" style="display: inline-block;">
+                    <a href="javascript:void(0)" th:onclick="|memberPopup(${following.id})|">
+                        <div class="content-box-image" style="width: 80px; height: 80px; border-radius: 70%; overflow: hidden; margin: 5px;">
+                            <img th:src="${following.fileName}" th:alt="${following.userName}">
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div id="follower" class="tabcontent" style="display: none;">
+                <div th:each="follower : ${followerList}" style="display: inline-block;">
+                    <a href="javascript:void(0)" th:onclick="|memberPopup(${follower.id})|">
+                        <div class="content-box-image" style="width: 80px; height: 80px; border-radius: 70%; overflow: hidden; margin: 5px;">
+                            <img th:src="${follower.fileName}" th:alt="${follower.userName}">
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
+
     </div>
     <div class="middle" style="flex: 2; padding: 5px; text-align: center;">
         <div th:if="${roomJoinList == null}">

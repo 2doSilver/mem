@@ -1,12 +1,92 @@
-.card {
-  display: center;
-  width: 500px;
-  height: 300px;
-  grid-gap: 20px;
-  justify-items: center;
+.card-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
   margin-top: 100px;
+  margin-bottom: 100px;
 }
 
-.img-square-wrapper {
-    width: 200px;
+.left-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #dddddd;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  width: 600px;
+}
+
+.right-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 400px;
+}
+
+.right-card .right {
+    width: 100%;
+}
+
+.card-img-left {
+  width: 600px;
+  height: auto;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 24px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+
+
+
+.active-user {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 100px;
+  margin-left: 60px;
+}
+
+
+
+.user-profile img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.follow-btn {
+  margin-top: 10px;
+  margin-left: 5px;
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #008cba;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.follow-btn:hover {
+  background-color: #005f7b;
 }

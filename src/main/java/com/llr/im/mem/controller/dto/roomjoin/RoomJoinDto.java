@@ -15,4 +15,7 @@ public class RoomJoinDto {
 
     private Long roomId;
 
+    public String getActiveName() {
+        return this.activeName;
+    }
 }

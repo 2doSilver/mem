@@ -12,8 +12,9 @@
 <body>
 <!--네비게이션바-->
 <div class="navbar" th:replace="navbar :: navbar"></div>
-<div class="card">
-    <div class="card-horizontal">
+
+<div class="card-wrapper">
+    <div class="left-card">
         <div class="img-square-wrapper">
             <img class="card-img-left" th:src="'data:image/jpg;base64,' + ${room.coverPhotoBase64}" />
         </div>
@@ -21,44 +22,33 @@
             <h3 class="card-title" th:text="${room.roomName}"></h3>
             <h4 th:text="|방장 : ${room.ownerId}|"></h4>
 
-            <div th:if="${room != null}">
-                <div th:text="|현재 ${#lists.size(room.roomJoinList)}명의 참여자가 있습니다.|"></div>
-                <div>
-                    <ul>
-                        <th:block th:each="roomJoin : ${room.roomJoinList}">
-                            <a href="javascript:void(0)" th:onclick="|memberPopup(${roomJoin.member.id})|"
-                               th:inline="text">
-                                [[${roomJoin.activeName}]]
-                            </a>
-                            <br />
-                        </th:block>
-                    </ul>
-
-<!--                    <ul>-->
-<!--                        <a href="javascript:void(0)" th:onclick="|memberPopup(${friend.id})|">-->
-<!--                        <li th:each="roomJoin : ${room.roomJoinList}" th:text="${roomJoin?.activeName}"></li>-->
-<!--                        </a>-->
-<!--                    </ul>-->
+            <button th:onclick="|location.href='@{|/room/${room.roomId}/join|}'|">참여하기</button>
+        </div>
+    </div>
+    <div class="right-card" style="width: 30%; ">
+        <div class="right">
+            <h4 style="text-align: center; margin-top: 10px;">참여 중인 사용자</h4>
+            <hr style="border: none; border-bottom: 1px solid #dddddd; margin: 10px;">
+            <div th:each="roomJoin : ${room.roomJoinList}">
+                <div class="active-user">
+                    <div class="user-profile" style="width: 50px; height: 50px; overflow: hidden; border-radius: 50%; margin-right: 10px;">
+                        <img th:src="${roomJoin.member.fileName}" th:alt="${roomJoin.member.userName}" style="max-width: 100%; height: auto;">
+                    </div>
+                    <div class="user-info">
+                        <div th:text="${roomJoin.activeName}" class="activeName" style="margin-left: 10px;  font-weight: bold; flex:1;"></div>
+                    </div>
+                    <div>
+                        <button class="follow-btn" style="flex:1; margin-left: 20px;">팔로우</button>
+                    </div>
                 </div>
             </div>
-
-            <button  th:onclick="|location.href='@{|/room/${room.roomId}/join|}'|">참여하기</button>
         </div>
     </div>
 </div>
 
-<!--<div class="card my-3">-->
-<!--    <div class="card-body">-->
-<!--        <h3 th:text="${room.roomName}"></h3>-->
-<!--        <h4 th:text="|방장 : ${room.ownerId}|"></h4>-->
-<!--        <div class="card-text" style="white-space: pre-line;" th:text="|현재 ${#lists.size(room.roomJoinList)}명의 참여자가 있습니다.|"></div>-->
-<!--        <div>-->
-<!--            <ul>-->
-<!--                <li th:each="roomJoin : ${room.roomJoinList}" th:text="${roomJoin?.activeName}"></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--        <button class="btn btn-primary my-2" th:onclick="|location.href='@{|/room/${room.roomId}/join|}'|">참여하기</button>-->
-<!--    </div>-->
-<!--</div>-->
+
+</div>
+
+
 </body>
 <script th:src="@{/script.js}"></script>

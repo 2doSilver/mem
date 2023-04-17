@@ -39,9 +39,7 @@ public class RoomController {
 
     @GetMapping(value = "/detail/{roomId}")
     public String detail(Model model, @PathVariable("roomId") Long roomId) {
-        //Room room = this.roomService.getRoom(roomId);
         RoomDto roomDto = this.roomService.getRoomDto(roomId);
-
         model.addAttribute("room", roomDto);
         model.addAttribute("roomJoinList", roomDto.getRoomJoinList());
         log.info("================{}", roomDto.getRoomJoinList());

@@ -1,8 +1,8 @@
 package com.llr.im.mem.controller.member;
 
-import com.llr.im.mem.controller.dto.friend.FriendDto;
+import com.llr.im.mem.controller.dto.follow.FollowDto;
 import com.llr.im.mem.controller.dto.member.MemberDto;
-import com.llr.im.mem.service.friend.FriendService;
+import com.llr.im.mem.service.follow.FollowService;
 import com.llr.im.mem.service.member.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
     @Autowired
-    private FriendService friendService;
+    private FollowService followService;
 
     @GetMapping("/popup/{memberId}")
     public String memberPopup(@PathVariable Long memberId, Model model) {
@@ -36,9 +36,9 @@ public class MemberController {
         MemberDto memberDto = memberService.getMemberInfo(memberId);
         model.addAttribute("member", memberDto);
 
-        // 2. 친구 여부 가져오기
-        FriendDto friendDto = friendService.getFriend(loginId, memberId);
-        model.addAttribute("friend", friendDto);
+        // 2. 팔로잉 여부 가져오기
+        FollowDto followDto = followService.getFollowing(loginId, memberId);
+        model.addAttribute("follow", followDto);
 
         return "mypage/memberPopup";
     }

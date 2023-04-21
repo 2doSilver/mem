@@ -4,21 +4,21 @@
 <div style="height: auto;" layout:fragment="content">
   <div style="height: 60%;">
     <section class="module-medium" id="demos">
-      <div class="container" th:each="friend : ${friendList}">
+      <div class="container" th:each="follow : ${followList}">
         <div class="row multi-columns-row" style="border: 1px dashed; margin: 10px; padding: 10px;">
           <div class="col-md-4 col-sm-6 col-xs-12" style="float: left;">
             <div class="content-box-image">
               <a class="content-box" href="#">
                 <div class="content-box-image" style="width: 100px; height: 100px; border-radius: 70%; overflow: hidden; ">
-                  <img th:src="${friend.fileName}" th:alt="${friend.userName}">
+                  <img th:src="${follow.fileName}" th:alt="${follow.userName}">
                 </div>
-                <h3 class="content-box-title font-serif" style="float: left;" th:text="${friend.userName}"/>
+                <h3 class="content-box-title font-serif" style="float: left;" th:text="${follow.userName}"/>
               </a>
             </div>
           </div>
           <div style="float: right;">
             <a href="javascript:void(0)"
-               th:no="${friend.id}" th:userName="${friend.userName}" th:userId="${friend.userId}"
+               th:no="${follow.id}" th:userName="${follow.userName}" th:userId="${follow.userId}"
                onclick="messagePopup2(this.getAttribute('no'), this.getAttribute('userName'), this.getAttribute('userId'))">
               <img th:src="@{/icon/message_icon.png}" width="50px" height="50px">
             </a>
@@ -27,9 +27,9 @@
             </a>
 
             <form name="hiddenForm" id="hiddenForm" method="post">
-              <input type="hidden" th:value="${friend.id}" name="receiverId">
-              <input type="hidden" th:value="${friend.userName}" name="receiverName">
-              <input type="hidden" th:value="${friend.userId}" name="receiverUserId">
+              <input type="hidden" th:value="${follow.id}" name="receiverId">
+              <input type="hidden" th:value="${follow.userName}" name="receiverName">
+              <input type="hidden" th:value="${follow.userId}" name="receiverUserId">
             </form>
           </div>
         </div>

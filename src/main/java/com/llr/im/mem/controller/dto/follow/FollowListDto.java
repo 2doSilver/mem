@@ -1,15 +1,14 @@
-package com.llr.im.mem.controller.dto.friend;
+package com.llr.im.mem.controller.dto.follow;
 
 import com.llr.im.mem.entity.member.Member;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @AllArgsConstructor
 @Getter
 @Setter
-public class FriendListDto {
+public class FollowListDto {
 
     private Long id;
 
@@ -20,7 +19,7 @@ public class FriendListDto {
 
     private String fileName;
 
-    public FriendListDto (Member entity) {
+    public FollowListDto(Member entity) {
         this.id = entity.getId();
         this.userId = entity.getUserId();
         this.userName = entity.getUserName();

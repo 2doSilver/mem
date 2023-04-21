@@ -13,6 +13,9 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     Member findByUserId(String userId);
 
-    @Query(value = "SELECT * FROM MEMBER M WHERE M.ID in (SELECT F.FRIEND_ID FROM FRIEND F WHERE F.MEMBER_ID = :id)", nativeQuery = true)
-    List<Member> findMemberByFriendId(@Param("id") Long memberId);
+    @Query(value = "SELECT * FROM MEMBER M WHERE M.ID in (SELECT F.FOLLOWING_ID FROM FOLLOW F WHERE F.MEMBER_ID = :id)", nativeQuery = true)
+    List<Member> findMemberByFollowingId(@Param("id") Long memberId);
+
+    @Query(value = "SELECT * FROM MEMBER M WHERE M.ID in (SELECT F.MEMBER_ID FROM FOLLOW F WHERE F.FOLLOWING_ID = :id)", nativeQuery = true)
+    List<Member> findMemberByMemberId(@Param("id") Long memberId);
 }

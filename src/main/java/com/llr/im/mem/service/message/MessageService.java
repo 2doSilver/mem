@@ -1,13 +1,11 @@
 package com.llr.im.mem.service.message;
 
-import com.llr.im.mem.controller.dto.friend.FriendListDto;
 import com.llr.im.mem.controller.dto.message.MessageListDto;
 import com.llr.im.mem.controller.dto.message.MessageSaveDto;
 import com.llr.im.mem.entity.member.Member;
 import com.llr.im.mem.entity.member.MemberRepository;
 import com.llr.im.mem.entity.message.Message;
 import com.llr.im.mem.entity.message.MessageRepository;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -57,6 +57,35 @@ function memberPopup(memberId) {
     window.open('/member/popup/' + memberId, '_blank', options);
 }
 
+function openTabContent(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+function follow(btn,id) {
+    var btn_id = btn.getAttribute('id');
+
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    if (btn_id == 'follow')
+        f.setAttribute('action', '/follow/follow/' + id);
+    if (btn_id == 'unfollow')
+        f.setAttribute('action', '/follow/unfollow/' + id);
+    document.body.appendChild(f);
+    f.submit();
+
+    opener.parent.location.reload();
+}
+
 function quit() {
     window.close();
     opener.location.reload();

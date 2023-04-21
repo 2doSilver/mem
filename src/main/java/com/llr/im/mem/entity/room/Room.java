@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Room {
 
     @Id
@@ -51,17 +53,17 @@ public class Room {
     @Column
     private byte[] coverPhoto;
 
-    @Builder
-    public Room(String ownerId, String roomCode, String roomName, Integer userSize, String roomTag,
-                LocalDateTime regDate, LocalDateTime updDate, byte[] coverPhoto) {
-        this.ownerId = ownerId;
-        this.roomCode = roomCode;
-        this.roomName = roomName;
-        this.userSize = userSize;
-       // this.activeName = activeName;
-        this.roomTag = roomTag;
-        this.regDate = regDate;
-        this.updDate = updDate;
-        this.coverPhoto = coverPhoto;
-    }
+//    @Builder
+//    public Room(String ownerId, String roomCode, String roomName, Integer userSize, String roomTag,
+//                LocalDateTime regDate, LocalDateTime updDate, byte[] coverPhoto) {
+//        this.ownerId = ownerId;
+//        this.roomCode = roomCode;
+//        this.roomName = roomName;
+//        this.userSize = userSize;
+//       // this.activeName = activeName;
+//        this.roomTag = roomTag;
+//        this.regDate = regDate;
+//        this.updDate = updDate;
+//        this.coverPhoto = coverPhoto;
+//    }
 }

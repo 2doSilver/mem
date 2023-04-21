@@ -1,5 +1,6 @@
 package com.llr.im.mem.controller.room;
 
+import com.llr.im.mem.controller.dto.room.RoomDto;
 import com.llr.im.mem.entity.room.Room;
 import com.llr.im.mem.exception.DuplicateException;
 import com.llr.im.mem.service.member.room.RoomJoinService;
@@ -25,7 +26,9 @@ public class RoomJoinController {
 
     @GetMapping(value = "/{roomId}/join")
     public String joinRoom(Model model, @PathVariable("roomId") Long roomId) {
-
+        RoomDto roomDto = this.roomService.getRoomDto(roomId);
+        model.addAttribute("room", roomDto);
+        model.addAttribute("roomJoinList", roomDto.getRoomJoinList());
         model.addAttribute("roomId", roomId);
         model.addAttribute("roomJoinForm", new RoomJoinForm());
         return "room_join";

@@ -1,21 +1,57 @@
-<h1>ROOM 가입화면</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/room_join_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar_style.css">
+</head>
 
-<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
 <body>
+<!--네비게이션바-->
+<div class="navbar" th:replace="navbar :: navbar"></div>
 
-        <div class="container my-3">
+    <div class="container" style="width: 800px; height: 500px;">
+        <div class="title">Room Join</div>
+        <div class="content">
+            <form th:action="@{|/room/${roomId}/join|}" th:object="${roomJoinForm}" method="post" enctype="multipart/form-data">
+                <div th:replace="~{form_errors :: formErrorsFragment}"></div>
 
-        <form th:action="@{|/room/${roomId}/join|}" th:object="${roomJoinForm}" method="post">
-            <div th:replace="~{form_errors :: formErrorsFragment}"></div>
-            <div class="mb-3">
-                <label for="roomCode" class="form-label">방 입장코드</label>
-                <input type="text" th:field="*{roomCode}" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="activeName" class="form-label">활동명</label>
-                <input type="text" th:field="*{activeName}" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary">등록</button>
-        </form>
+
+                <div class="user-details">
+                    <div class="input-box">
+                    <span for="roomCoverPhoto" class="details"></span>
+                    <img style="width: 100%; height: 200px; margin border: 2px solid black; border-bottom-width: 2px; margin-bottom: 17px; margin-left: 0; margin-right: 20px;" th:src="'data:image/jpg;base64,' + ${room.coverPhotoBase64}" />
+                    </div>
+                    <div class="input-box" style="margin-top: 8px;">
+                        <div class="input-box2">
+                        <span for="roomName" class="details">방이름</span>
+                        <p th:text="${room.roomName}"></p>
+                        </div>
+                        <div class="input-box2">
+                        <span for="ownerId" class="details">방장</span>
+                        <p th:text="${room.ownerId}"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="user-details" style="margin-top: 0;">
+                    <div class="input-box">
+                        <span for="roomCode" class="details">방 입장코드</span>
+                        <input type="text" placeholder="Enter your RoomCode" required th:field="*{roomCode}">
+                    </div>
+
+                    <div class="input-box">
+                        <span for="activeName" class="details">활동명</span>
+                        <input type="text" placeholder="Enter your ActiveName" required th:field="*{activeName}">
+                    </div>
+
+                </div>
+
+                <div class="button" style="margin-top: 5px;">
+                    <input type="submit" value="😻 Join With Us 😻">
+                </div>
+
+            </form>
         </div>
+    </div>
 </body>

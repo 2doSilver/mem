@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{layout/layout}">
+<th:block>
+<div layout:fragment="content" style="margin: 20px;">
+    <script th:inline="javascript">
+            $(document).ready(function(){
+                var objDiv = document.getElementById("cover");
+                objDiv.scrollTop = objDiv.scrollHeight;
+
+                var roomId = [[${roomId}]];
+                var writerName = [[${writer.userName}]];
+                var writerId = [[${writer.id}]];
+
+                console.log(roomId + ", " + writerName);
+
+                var sockJs = new SockJS("/stomp/chat");
+                //1. SockJS를 내부에 들고있는 stomp를 내어줌
+                var stomp = Stomp.over(sockJs);
+
+                //2. connection이 맺어지면 실행
+                stomp.connect({}, function (){
+                   console.log("STOMP Connection")
+
+                   //4. subscribe(path, callback)으로 메세지를 받을 수 있음
+                   stomp.subscribe("/sub/chat/room/" + roomId, function (chat) {
+                       var content = JSON.parse(chat.body);
+                       var writer = content.writerName;
+                       var str = '';
+                       var message = content.message;
+
+                       if(writer === writerName){
+                           str = "<div class=''>";
+                           str += "<div class='alert alert-secondary'>";
+                           str += "<b>" + writer + " : " + message + "</b>";
+                           str += "</div></div>";
+                       }
+                       else{
+                           str = "<div class=''>";
+                           str += "<div class='alert alert-warning'>";
+                           str += "<b>" + writer + " : " + message + "</b>";
+                           str += "</div></div>";
+                       }
+
+                       $("#msgArea").append(str);
+                       objDiv.scrollTop = objDiv.scrollHeight;
+                   });
+
+                   //3. send(path, header, message)로 메세지를 보낼 수 있음
+                   stomp.send('/pub/chat/enter', {}, JSON.stringify({roomId: roomId, writerName: writerName}))
+                });
+
+                $("#button-send").on("click", function(e){
+                    var msg = document.getElementById("msg");
+
+                    console.log(writerName + ":" + msg.value);
+                    stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId,
+                        message: msg.value, writerId: writerId, writerName: writerName}));
+                    msg.value = '';
+
+                });
+
+                $("#button-out").on("click", function(e){
+
+                    console.log("bye~");
+
+                    stomp.send('/pub/chat/bye', {}, JSON.stringify({writerId: writerId}));
+                    window.close();
+                });
+
+                // 엔터 처리
+                var msgInput = document.getElementById('msg');
+
+                msgInput.addEventListener('keyup', function (event) {
+                    if (event.keyCode === 13) {
+                        event.preventDefault();
+                        document.getElementById('button-send').click();
+                    }
+                });
+
+                // 채팅방 벗어날 때 이벤트
+                window.onbeforeunload = function (e) {
+                    stomp.send('/pub/chat/out', {}, JSON.stringify({roomId: roomId, writerName: writerName}));
+                };
+            });
+        </script>
+        <div id="cover" style="width: 330px; height: 400px; overflow: scroll; overflow-x:hidden">
+            <div th:each="chat : ${chatList}" style="width: 100%;">
+                <div>
+                    <div th:if="${chat.writerId == writer.id}" class="alert alert-secondary">
+                        <b>[[${chat.writerName}]] : [[${chat.message}]]</b>
+                    </div>
+                    <div th:unless="${chat.writerId == writer.id}" class="alert alert-warning">
+                        <b>[[${chat.writerName}]] : [[${chat.message}]]</b>
+                    </div>
+                </div>
+            </div>
+            <div id="msgArea" style="width: 100%;"></div>
+        </div>
+        <div style="width: 330px;">
+            <div class="input-group mb-3">
+                <input type="text" id="msg" class="form-control">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
+                </div>
+            </div>
+        </div>
+</div>
+</th:block>
+</html>

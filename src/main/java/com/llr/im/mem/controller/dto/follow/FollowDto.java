@@ -9,9 +9,16 @@ import lombok.*;
 @AllArgsConstructor
 public class FollowDto {
 
+    private Long id;
+
     private Long memberId;
 
     private Long followingId;
+
+    public FollowDto(Long memberId, Long followingId) {
+        this.memberId = memberId;
+        this.followingId = followingId;
+    }
 
     public Follow toEntity () {
         return Follow.builder()

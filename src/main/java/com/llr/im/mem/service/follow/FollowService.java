@@ -39,7 +39,7 @@ public class FollowService {
         if (follow == null)
             return new FollowDto();
         else
-            return new FollowDto(follow.getMemberId(), follow.getFollowingId());
+            return new FollowDto(follow.getId(), follow.getMemberId(), follow.getFollowingId());
     }
 
     public void setFollow(Long memberId, Long followingId) {

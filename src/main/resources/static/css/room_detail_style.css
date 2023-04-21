@@ -95,6 +95,19 @@ transition: left 0.5s ease-in-out;
 	background: #ffc208;
 }
 
+.profile_wrap .profile_img .profile_img2 .edit-btn {
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+    right: 0;
+    box-shadow: inset 2px -2px 3px #6a60c3;
+}
+
 .back_btn,
 .settings_btn{
 	width: 50px;

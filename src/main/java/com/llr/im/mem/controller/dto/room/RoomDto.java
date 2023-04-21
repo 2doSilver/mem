@@ -1,9 +1,13 @@
 package com.llr.im.mem.controller.dto.room;
 
 import com.llr.im.mem.controller.dto.roomjoin.RoomJoinDto;
+import com.llr.im.mem.controller.room.RoomEditForm;
 import com.llr.im.mem.entity.room.Room;
 import com.llr.im.mem.entity.roomjoin.RoomJoin;
 import lombok.*;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.userdetails.User;
 
 import java.time.LocalDateTime;
@@ -34,6 +38,8 @@ public class RoomDto {
 
     private LocalDateTime regDate;
 
+    private LocalDateTime updDate;
+
     private  Integer userSize;
 
     private byte[] coverPhoto; // 이미지 파일을 받을 수 있는 필드
@@ -55,6 +61,7 @@ public class RoomDto {
 
     public Room toEntity() {
         return Room.builder()
+                .roomId(roomId)
                 .ownerId(ownerId)
                 .roomName(roomName)
                 .roomTag(roomTag)
@@ -67,6 +74,8 @@ public class RoomDto {
                 .build();
     }
 
+
+
     public void setRoomTagList(String roomTag) {
         if (roomTag != null && !roomTag.isEmpty()) {
             this.roomTagList = Arrays.asList(roomTag.split("#"));
@@ -78,8 +87,6 @@ public class RoomDto {
             this.roomTagList = null;
         }
     }
-
-
 
 
 }

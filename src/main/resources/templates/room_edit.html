@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/css/card_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/img_slider_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/search_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/room_create_style.css">
+
+</head>
+
+<body>
+<!--네비게이션바-->
+<div class="navbar" th:replace="~{navbar :: navbar}"></div>
+
+<div class="container" style="width: 800px; height: 540px;">
+    <div class="title">Room Edit</div>
+    <div class="content">
+        <form th:action="@{|/room/${roomId}/edit|}" th:object="${roomEditForm}" method="post" enctype="multipart/form-data">
+            <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+            <input type="hidden" required th:field="*{roomId}">
+            <div class="user-details">
+                <div class="input-box">
+                    <span for="ownerId" class="details">방장 아이디</span>
+                    <input type="text" required th:field="*{ownerId}">
+                </div>
+
+                <div class="input-box">
+                    <span for="roomName" class="details">방 이름</span>
+                    <input type="text" placeholder="[[${room.roomName}]]" required th:field="*{roomName}">
+                </div>
+
+                <div class="input-box">
+                    <span for="userSize" class="details">방 정원</span>
+                    <input type="number" value="[[${room.userSize}]]" required th:field="*{userSize}">
+                </div>
+
+                <div class="input-box">
+                    <span for="roomCode" class="details">방 입장코드</span>
+                    <input type="text" placeholder="[[${room.roomCode}]]" required th:field="*{roomCode}">
+                </div>
+
+            </div>
+
+            <div class="input-box">
+                <span for="roomTag" class="form-label">방 태그</span>
+                <input class="form-control" style="width: 100%; border-bottom-width: 2px; margin-bottom: 17px;" type="text" placeholder="[[${room.roomTag}]]" required th:field="*{roomTag}">
+            </div>
+
+            <div class="gender-details">
+                <div class="mb-3">
+                    <label for="coverPhoto" class="form-label">방 커버화면</label>
+                    <input style="border-bottom-width: 2px;" type="file" th:field="*{coverPhoto}" class="form-control">
+                </div>
+            </div>
+
+            <div class="button">
+                <input type="submit" value="Edit">
+            </div>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

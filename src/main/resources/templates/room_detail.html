@@ -17,23 +17,29 @@
 
 <div class="wrapper">
     <div class="profile_card">
-        <div class="back_btn">
+        <div class="back_btn" onclick="goToBackPage()">
             <i class="fas fa-long-arrow-alt-left"></i>
         </div>
 
         <div class="settings_btn" onclick="moveCard()" >
-            <i class="fas fa-cog"></i>
+            <i class="fas fa-plus"></i>
         </div>
 
         <div class="profile_wrap">
             <div class="profile_img">
-                <img  th:src="'data:image/jpg;base64,' + ${room.coverPhotoBase64}" />
+                <div class="profile_img2">
+                    <img  th:src="'data:image/jpg;base64,' + ${room.coverPhotoBase64}" />
+                    <span class="edit-btn" th:onclick="|location.href='@{|/room/${room.roomId}/edit|}'|">
+                            <i class="fas fa-cog"></i>
+                    </span>
+                </div>
                 <p class="name" th:text="${room.roomName}"></p>
                 <p class="place">
 					<span class="icon">
 						<i class="fas fa-map-pin"></i>
 					</span>
                     <span class="place_name" th:text="|방장 : ${room.ownerId}|"></span>
+
                 </p>
             </div>
 
@@ -101,4 +107,10 @@
     var card = document.querySelector('.wrapper');
     card.style.left = '+25%';
   }
+</script>
+
+<script>
+function goToBackPage() {
+  location.href = '/room/list';
+}
 </script>

@@ -3,15 +3,18 @@ package com.llr.im.mem.controller.room;
 import com.llr.im.mem.controller.dto.room.RoomDto;
 import com.llr.im.mem.entity.room.Room;
 import com.llr.im.mem.service.member.room.RoomService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
@@ -42,7 +45,6 @@ public class RoomController {
         RoomDto roomDto = this.roomService.getRoomDto(roomId);
         model.addAttribute("room", roomDto);
         model.addAttribute("roomJoinList", roomDto.getRoomJoinList());
-        log.info("================{}", roomDto.getRoomJoinList());
         return "room_detail";
     }
 
@@ -51,6 +53,77 @@ public class RoomController {
         List<RoomDto> searchList = this.roomService.search(keyword);
         model.addAttribute("roomList", searchList);
         return "room_list";
+    }
+
+
+    @GetMapping(value = "/{roomId}/edit")
+    public String edit(Model model, @PathVariable("roomId") Long roomId) {
+        RoomDto roomDto = this.roomService.getRoomDto(roomId);
+        RoomEditForm roomEditForm = new RoomEditForm();
+        roomEditForm.setRoomId(roomDto.getRoomId());
+        roomEditForm.setOwnerId(roomDto.getOwnerId());
+        roomEditForm.setRoomName(roomDto.getRoomName());
+        roomEditForm.setUserSize(roomDto.getUserSize());
+        roomEditForm.setRoomCode(roomDto.getRoomCode());
+        roomEditForm.setRoomTag(roomDto.getRoomTag());
+//       roomEditForm.setCoverPhoto(roomDto.getCoverPhoto().);
+
+        model.addAttribute("room", roomDto);
+        model.addAttribute("roomEditForm", roomEditForm);
+
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}", roomDto.getUserSize());
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}", roomDto.getRoomCode());
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}", roomDto.getRoomName());
+        return "room_edit";
+    }
+
+    @PostMapping(value = "/{roomId}/edit")
+    public String edit(@PathVariable("roomId") Long roomId, @Valid RoomEditForm roomEditForm, BindingResult bindingResult, Principal principal, Model model) throws IOException {
+
+
+        if (bindingResult.hasErrors()) {
+            // 유효성 검사에 실패한 경우 처리
+            return "room_edit";
+        }
+
+        RoomDto roomDtoForCoverPhoto = this.roomService.getRoomDto(roomId);
+
+        //coverPhoto 처리
+        byte[] coverPhoto = null;
+        if (roomEditForm.getCoverPhoto() != null) {
+            log.info("coverphoto in");
+            coverPhoto = roomEditForm.getCoverPhoto().getBytes();
+        } else {
+            log.info("coverphoto not in");
+            coverPhoto = roomDtoForCoverPhoto.getCoverPhoto();
+        }
+
+
+        // RoomDto 생성
+        RoomDto roomDto = new RoomDto(
+                roomEditForm.getRoomId(),
+                roomEditForm.getOwnerId(),
+                roomEditForm.getRoomName(),
+                roomEditForm.getRoomTag(),
+                null,
+                roomEditForm.getRoomCode(),
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+                roomEditForm.getUserSize(),
+                coverPhoto,
+                null
+        );
+
+        roomService.edit(roomId, roomDto);
+
+
+        model.addAttribute("room", roomDto);
+        model.addAttribute("roomEditForm", roomEditForm);
+
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}", roomDto.getRoomName());
+
+        return String.format("redirect:/room/detail/%d", roomId);
+
     }
 
 }

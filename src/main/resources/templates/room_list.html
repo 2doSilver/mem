@@ -86,32 +86,13 @@
 </div>
 
 
+<!--room 생성버튼-->
 
-<!--&lt;!&ndash;room&ndash;&gt;-->
-<!--<div class="card-container">-->
-<!--    <div th:each="room : ${roomList}">-->
-<!--        <div class="card">-->
-<!--                <img th:src="'data:image/jpg;base64,' + ${room.coverPhotoBase64}" />-->
-<!--                <h3>-->
-<!--                    <a th:href="@{|/room/detail/${room.roomId}|}" th:text="${room.roomName}"></a>-->
-<!--                </h3>-->
-<!--                <p th:text="|✔${room.ownerId} 방장님✔|"></p>-->
-<!--                <div>-->
-<!--                    <img class="card-owner-img" src="/img/juuu.jpg"/>-->
-<!--                </div>-->
-<!--                <p th:text="|✔모임 생성일 ${#temporals.format(room.regDate, 'yyyy-MM-dd')}✔|"></p>-->
-
-<!--                <div class="tag-container">-->
-<!--                    <div th:each="tag : ${room.roomTagList}" class="card-tag">-->
-<!--                        <button type="button" class="btn btn-secondary" th:text="'#' + ${tag}" />-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--        </div>-->
-<!--    </div>-->
+<!--<div class="button">-->
+<!--    <input type="submit" value="Register">-->
 <!--</div>-->
 
 
-<!--room 생성버튼-->
 <div class="create-room-container">
     <a href="/room/create">
     <button class="create-room-button">방 만들기</button>

@@ -35,7 +35,6 @@ public class RoomCreateController {
 
     @GetMapping(value = "/create")
     public String createRoom(Model model) {
-
         model.addAttribute("roomCreateForm", new RoomCreateForm());
         return "room_create";
     }
@@ -58,6 +57,7 @@ public class RoomCreateController {
                     null,
                     roomCreateForm.getRoomCode(),
                     LocalDateTime.now(),
+                    LocalDateTime.now(),
                     roomCreateForm.getUserSize(),
                     roomCreateForm.getCoverPhoto().getBytes(),
                     null
@@ -76,10 +76,7 @@ public class RoomCreateController {
             return "room_create";
         }
 
-
-        //return String.format("redirect:/room/detail/%s", roomId);
         return "redirect:/room/list";
-        //return "redirect:/room/detail/" + roomId;
     }
 
 

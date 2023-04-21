@@ -12,40 +12,40 @@
 
 <body>
 <!--네비게이션바-->
-<div class="navbar" th:replace="navbar :: navbar"></div>
+<div class="navbar" th:replace="~{navbar :: navbar}"></div>
 
 <div class="container" style="width: 800px; height: 540px;">
-    <div class="title">Room Creation</div>
+    <div class="title">Room Edit</div>
     <div class="content">
-        <form th:action="@{|/room/create|}" th:object="${roomCreateForm}" method="post" enctype="multipart/form-data">
+        <form th:action="@{|/room/${roomId}/edit|}" th:object="${roomEditForm}" method="post" enctype="multipart/form-data">
             <div th:replace="~{form_errors :: formErrorsFragment}"></div>
-
+            <input type="hidden" required th:field="*{roomId}">
             <div class="user-details">
                 <div class="input-box">
                     <span for="ownerId" class="details">방장 아이디</span>
-                    <input type="text" placeholder="Enter your Id" required th:field="*{ownerId}">
+                    <input type="text" required th:field="*{ownerId}">
                 </div>
 
                 <div class="input-box">
                     <span for="roomName" class="details">방 이름</span>
-                    <input type="text" placeholder="Enter your RoomName" required th:field="*{roomName}">
+                    <input type="text" placeholder="[[${room.roomName}]]" required th:field="*{roomName}">
                 </div>
 
                 <div class="input-box">
                     <span for="userSize" class="details">방 정원</span>
-                    <input type="number" placeholder="Enter your UserSize" required th:field="*{userSize}">
+                    <input type="number" value="[[${room.userSize}]]" required th:field="*{userSize}">
                 </div>
 
                 <div class="input-box">
                     <span for="roomCode" class="details">방 입장코드</span>
-                    <input type="text" placeholder="Enter your RoomCode" required th:field="*{roomCode}">
+                    <input type="text" placeholder="[[${room.roomCode}]]" required th:field="*{roomCode}">
                 </div>
 
             </div>
 
             <div class="input-box">
                 <span for="roomTag" class="form-label">방 태그</span>
-                <input class="form-control" style="width: 100%; border-bottom-width: 2px; margin-bottom: 17px;" type="text" placeholder="Enter your RoomTag" required th:field="*{roomTag}">
+                <input class="form-control" style="width: 100%; border-bottom-width: 2px; margin-bottom: 17px;" type="text" placeholder="[[${room.roomTag}]]" required th:field="*{roomTag}">
             </div>
 
             <div class="gender-details">
@@ -56,7 +56,7 @@
             </div>
 
             <div class="button">
-                <input type="submit" value="Register">
+                <input type="submit" value="Edit">
             </div>
 
         </form>

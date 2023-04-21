@@ -66,7 +66,7 @@ public class RoomController {
         roomEditForm.setUserSize(roomDto.getUserSize());
         roomEditForm.setRoomCode(roomDto.getRoomCode());
         roomEditForm.setRoomTag(roomDto.getRoomTag());
-//       roomEditForm.setCoverPhoto(roomDto.getCoverPhoto().);
+       // roomEditForm.setCoverPhoto(roomDto.getCoverPhoto());
 
         model.addAttribute("room", roomDto);
         model.addAttribute("roomEditForm", roomEditForm);
@@ -90,7 +90,7 @@ public class RoomController {
 
         //coverPhoto 처리
         byte[] coverPhoto = null;
-        if (roomEditForm.getCoverPhoto() != null) {
+        if (roomEditForm.getCoverPhoto() != null && !roomEditForm.getCoverPhoto().isEmpty()) {
             log.info("coverphoto in");
             coverPhoto = roomEditForm.getCoverPhoto().getBytes();
         } else {
@@ -113,6 +113,7 @@ public class RoomController {
                 coverPhoto,
                 null
         );
+
 
         roomService.edit(roomId, roomDto);
 

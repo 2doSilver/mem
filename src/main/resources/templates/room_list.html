@@ -58,13 +58,14 @@
     <div th:each="room : ${roomList}" class="card">
         <div class="card-front">
             <div>
-                <img class="card-cover-img" th:src="'data:image/jpg;base64,' + ${room.coverPhotoBase64}" />
-                <h3>
-                    <a th:href="@{|/room/detail/${room.roomId}|}" th:text="${room.roomName}"></a>
+                <img class="card-cover-img" style="margin-bottom: 7px;" th:src="'data:image/jpg;base64,' + ${room.coverPhotoBase64}" />
+                <h3 style="color: #9400d3; margin-bottom: 10px;">
+<!--                    <a th:href="@{|/room/detail/${room.roomId}|}" th:text="${room.roomName}"></a>-->
+                    <a th:text="|🤘${room.roomName}🤘|"></a>
                 </h3>
                 <p th:text="|✔${room.ownerId} 방장님✔|"></p>
                 <div>
-                    <img class="card-owner-img" src="/img/juuu.jpg"/>
+                    <img class="card-owner-img" style="margin-bottom: 7px;"  src="/img/juuu.jpg"/>
                 </div>
                 <p th:text="|✔모임 생성일 ${#temporals.format(room.regDate, 'yyyy-MM-dd')}✔|"></p>
             </div>
@@ -85,12 +86,6 @@
     </div>
 </div>
 
-
-<!--room 생성버튼-->
-
-<!--<div class="button">-->
-<!--    <input type="submit" value="Register">-->
-<!--</div>-->
 
 
 <div class="create-room-container">

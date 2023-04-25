@@ -56,7 +56,7 @@ public class RoomJoinController {
             return "room_join";
         }
         try {
-            roomJoinForm.setMemberId(99999995L);
+            roomJoinForm.setMemberId(99999999L);
             roomJoinForm.setRoomId(roomId);
             roomJoinService.join(roomJoinForm);
         }catch (DuplicateException e) {

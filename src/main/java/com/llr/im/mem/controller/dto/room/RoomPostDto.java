@@ -1,6 +1,7 @@
 package com.llr.im.mem.controller.dto.room;
 
 import com.llr.im.mem.entity.room.Room;
+import com.llr.im.mem.entity.room.Room_Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import java.util.Base64;
 @Getter
 public class RoomPostDto {
 
-    private Long id;
+    private Long postId;
 
     private Room room;
 
@@ -25,6 +26,8 @@ public class RoomPostDto {
     private byte[] postPhoto;
 
     private String postContent;
+
+    private String postTag;
 
     private LocalDateTime regDate;
 
@@ -36,5 +39,16 @@ public class RoomPostDto {
             return Base64.getEncoder().encodeToString(postPhoto);
         }
         return null;
+    }
+
+    public Room_Post toEntity() {
+        return Room_Post.builder()
+                .postId(postId)
+                .activeName(activeName)
+                .postPhoto(postPhoto)
+                .postContent(postContent)
+                .regDate(regDate)
+                .updDate(updDate)
+                .build();
     }
 }

@@ -1,8 +1,6 @@
 package com.llr.im.mem.entity.room;
 
-import com.llr.im.mem.entity.member.Member;
 import com.llr.im.mem.entity.roomjoin.RoomJoin;
-import com.llr.im.mem.entity.comment.Room_comment;
 import jakarta.persistence.*;
 import jakarta.persistence.OneToMany;
 import java.util.List;
@@ -44,8 +42,6 @@ public class Room {
 
     private LocalDateTime updDate;
 
-    @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
-    private List<Room_comment> room_commentList;
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
     private List<RoomJoin> roomJoinList;

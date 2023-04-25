@@ -66,14 +66,10 @@ public class RoomController {
         roomEditForm.setUserSize(roomDto.getUserSize());
         roomEditForm.setRoomCode(roomDto.getRoomCode());
         roomEditForm.setRoomTag(roomDto.getRoomTag());
-       // roomEditForm.setCoverPhoto(roomDto.getCoverPhoto());
 
         model.addAttribute("room", roomDto);
         model.addAttribute("roomEditForm", roomEditForm);
 
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}", roomDto.getUserSize());
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}", roomDto.getRoomCode());
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}", roomDto.getRoomName());
         return "room_edit";
     }
 
@@ -98,7 +94,6 @@ public class RoomController {
             coverPhoto = roomDtoForCoverPhoto.getCoverPhoto();
         }
 
-
         // RoomDto 생성
         RoomDto roomDto = new RoomDto(
                 roomEditForm.getRoomId(),
@@ -114,17 +109,20 @@ public class RoomController {
                 null
         );
 
-
         roomService.edit(roomId, roomDto);
-
-
         model.addAttribute("room", roomDto);
         model.addAttribute("roomEditForm", roomEditForm);
-
-        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!{}", roomDto.getRoomName());
-
         return String.format("redirect:/room/detail/%d", roomId);
+    }
 
+    @GetMapping(value = "/{roomId}/communication")
+    public String communicate (@PathVariable("roomId") Long roomId, Model model) {
+
+        RoomDto roomDto = this.roomService.getRoomDto(roomId);
+        model.addAttribute("room", roomDto);
+        model.addAttribute("roomJoinList", roomDto.getRoomJoinList());
+
+        return "room_communication";
     }
 
 }

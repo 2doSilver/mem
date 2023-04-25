@@ -1,5 +1,6 @@
 package com.llr.im.mem.entity.member;
 
+import com.llr.im.mem.entity.room.Room;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -52,6 +53,7 @@ public class Member {
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private Date regDate;
+
 
     @Builder
     public Member(Long id, String userId, String userPassword, String userName, String userPhone,

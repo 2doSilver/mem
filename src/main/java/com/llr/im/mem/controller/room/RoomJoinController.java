@@ -1,7 +1,11 @@
 package com.llr.im.mem.controller.room;
 
 import com.llr.im.mem.controller.dto.room.RoomDto;
+import com.llr.im.mem.controller.dto.roomjoin.RoomJoinDto;
+import com.llr.im.mem.entity.member.Member;
 import com.llr.im.mem.entity.room.Room;
+import com.llr.im.mem.entity.roomjoin.RoomJoin;
+import com.llr.im.mem.entity.roomjoin.RoomJoinRepository;
 import com.llr.im.mem.exception.DuplicateException;
 import com.llr.im.mem.service.member.room.RoomJoinService;
 import com.llr.im.mem.service.member.room.RoomService;
@@ -14,6 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 
 @RequiredArgsConstructor
 @Controller
@@ -23,6 +30,7 @@ public class RoomJoinController {
 
     private final RoomJoinService roomJoinService;
     private final RoomService roomService;
+    private final  RoomJoinRepository roomJoinRepository;
 
     @GetMapping(value = "/{roomId}/join")
     public String joinRoom(Model model, @PathVariable("roomId") Long roomId) {
@@ -48,7 +56,7 @@ public class RoomJoinController {
             return "room_join";
         }
         try {
-            roomJoinForm.setMemberId(99999998L);
+            roomJoinForm.setMemberId(99999995L);
             roomJoinForm.setRoomId(roomId);
             roomJoinService.join(roomJoinForm);
         }catch (DuplicateException e) {
@@ -67,6 +75,7 @@ public class RoomJoinController {
 
         return String.format("redirect:/room/detail/%s", roomId);
     }
+
 
 
 }

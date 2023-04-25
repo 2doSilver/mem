@@ -1,5 +1,6 @@
 package com.llr.im.mem.entity.room;
 
+import com.llr.im.mem.entity.member.Member;
 import com.llr.im.mem.entity.roomjoin.RoomJoin;
 import com.llr.im.mem.entity.comment.Room_comment;
 import jakarta.persistence.*;
@@ -49,21 +50,11 @@ public class Room {
     @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
     private List<RoomJoin> roomJoinList;
 
+    @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
+    private List<Room_Post> room_postList;
+
     @Lob
     @Column
     private byte[] coverPhoto;
 
-//    @Builder
-//    public Room(String ownerId, String roomCode, String roomName, Integer userSize, String roomTag,
-//                LocalDateTime regDate, LocalDateTime updDate, byte[] coverPhoto) {
-//        this.ownerId = ownerId;
-//        this.roomCode = roomCode;
-//        this.roomName = roomName;
-//        this.userSize = userSize;
-//       // this.activeName = activeName;
-//        this.roomTag = roomTag;
-//        this.regDate = regDate;
-//        this.updDate = updDate;
-//        this.coverPhoto = coverPhoto;
-//    }
 }
